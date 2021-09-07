@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaf45c0e9609bf43b7708516566a4c5, type: 3}
   m_Name: Turtle
   m_EditorClassIdentifier: 
-  mName: 
-  mMeshPrefab: {fileID: 0}
-  mTilesEffectOnCharacter: []
+  mName: Turtle
+  mMeshPrefab: {fileID: 919132149155446097, guid: 10bc54b256aed4d438f6aa34e781a0c8,
+    type: 3}
+  mTilesEffectOnCharacter:
+  - mTileType: 0
+    mEffect: 0

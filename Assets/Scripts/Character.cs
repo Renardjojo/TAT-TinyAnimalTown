@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    protected List<Tile> mPath;
+    public List<Tile> mPath;
     public CharacterData mUserData;
         
     // Start is called before the first frame update
@@ -16,13 +18,10 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    
-    public void AddPath(Tile tileToAdd)
-    {
-        //TODO check if previous tile is same (remove of list)
-        //TODO check if tile is nearst than another
-        mPath.Add(tileToAdd);
+        foreach (var path in mPath)
+        {
+            EditorGUIUtility.PingObject(path);
+            Debug.Log("Pinged " + path.name);
+        }
     }
 }

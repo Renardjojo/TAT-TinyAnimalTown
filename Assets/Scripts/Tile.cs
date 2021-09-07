@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-  
+    public static float TILE_SIZE = 1f;
 }
 
 public enum ETileType
