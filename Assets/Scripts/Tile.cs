@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Tile : MonoBehaviour
 {
     public static float TILE_SIZE = 1f;
+    [SerializeField] private ETileType tileType;
 }
 
 public enum ETileType
