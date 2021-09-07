@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public List<Character> mListCharacters;
     protected int mCurrentCharacter = 0;
     
+    [SerializeField]
     public LevelManager mLevelManager;
 
     // Start is called before the first frame update

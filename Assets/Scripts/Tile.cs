@@ -20,3 +20,11 @@ public enum ETileType
     STAIR,
     COUNT
 }
+
+public enum ETileEffect
+{
+    FAST, 
+    SLOW,
+    BLOCK,
+    COUNT
+}

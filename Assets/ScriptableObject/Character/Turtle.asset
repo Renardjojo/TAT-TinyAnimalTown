@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaf45c0e9609bf43b7708516566a4c5, type: 3}
   m_Name: Turtle
   m_EditorClassIdentifier: 
-  Name: Turtle
-  MeshPrefab: {fileID: 0}
+  mName: 
+  mMeshPrefab: {fileID: 0}
+  mTilesEffectOnCharacter: []

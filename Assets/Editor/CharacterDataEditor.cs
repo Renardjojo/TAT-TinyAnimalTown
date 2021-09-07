@@ -8,10 +8,12 @@ public class CharacterDataEditor : Editor
 {
     // Custom form for Player Preferences
     private CharacterData Target;
+    private SerializedProperty mListProperty;
     
     private void OnEnable()
     {
         Target = (CharacterData) target;
+        mListProperty = serializedObject.FindProperty("mTilesEffectOnCharacter");
     }
     
     Editor gameObjectEditor;
@@ -28,10 +30,10 @@ public class CharacterDataEditor : Editor
             bgColor.normal.background = previewBackgroundTexture;
 
             //display the mesh
-            if (Target.MeshPrefab != null)
+            if (Target.mMeshPrefab != null)
             {
                 if (gameObjectEditor == null)
-                    gameObjectEditor = Editor.CreateEditor(Target.MeshPrefab);
+                    gameObjectEditor = Editor.CreateEditor(Target.mMeshPrefab);
 
                 gameObjectEditor.OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
             }
@@ -39,32 +41,28 @@ public class CharacterDataEditor : Editor
         EditorGUILayout.BeginVertical();
         {
             EditorGUILayout.BeginHorizontal();
-            Target.Name = EditorGUILayout.TextField(new GUIContent("Name"), Target.Name);
+            Target.mName = EditorGUILayout.TextField(new GUIContent("Name"), Target.mName);
             if (GUILayout.Button("Use file name"))
             {
-                Target.Name = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(Target));
+                Target.mName = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(Target));
             }
             EditorGUILayout.EndHorizontal();
         }
         
         {
             EditorGUI.BeginChangeCheck();
-            Target.MeshPrefab = (GameObject)EditorGUILayout.ObjectField("Mesh" ,Target.MeshPrefab, typeof(GameObject), true);
+            Target.mMeshPrefab = (GameObject)EditorGUILayout.ObjectField("Mesh" ,Target.mMeshPrefab, typeof(GameObject), true);
 
             if (EditorGUI.EndChangeCheck())
             {
-                gameObjectEditor = Editor.CreateEditor(Target.MeshPrefab);
+                gameObjectEditor = Editor.CreateEditor(Target.mMeshPrefab);
             }
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndHorizontal();
-        
+
         {
-            EditorGUILayout.BeginHorizontal();
-            Target.test = EditorGUILayout.Toggle(new GUIContent("WaterNeed", "mL"), Target.test);
-            Target.test = EditorGUILayout.Toggle(new GUIContent("WaterNeed2", "mL"), Target.test);
-            Target.test = EditorGUILayout.Toggle(new GUIContent("WaterNeed3", "mL"), Target.test);
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.PropertyField(mListProperty, true);
         }
 
         {
