@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+enum ETileType
+{
+    GOOD_GUY,
+    OBJECT,
+    PEDESTRIAN_LINE,
+    PEDESTRIAN_TURN,
+    BUILDING,
+    SEWER,
+    SLOPE_DOWN,
+    SLOPE_UP,
+    STAIR,
+    COUNT
 }
