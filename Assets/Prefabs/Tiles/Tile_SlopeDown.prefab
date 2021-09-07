@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3317649110572271130}
   - component: {fileID: 3317649110572271131}
   - component: {fileID: 302963130}
+  - component: {fileID: -8460872517556421731}
   m_Layer: 0
   m_Name: Tile_SlopeDown
   m_TagString: Untagged
@@ -59,6 +60,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-8460872517556421731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317649110572271128}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0111672259c7b4fa5c43ef98556367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.0141509175, g: 1, b: 0.87452465, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2799509775388227382
 PrefabInstance:
   m_ObjectHideFlags: 0

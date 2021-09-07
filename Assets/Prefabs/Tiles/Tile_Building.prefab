@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8738367367891699881}
   - component: {fileID: 8738367367891699880}
   - component: {fileID: 1524174878}
+  - component: {fileID: -7799356144147167518}
   m_Layer: 0
   m_Name: Tile_Building
   m_TagString: Untagged
@@ -59,6 +60,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &-7799356144147167518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738367367891699883}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0111672259c7b4fa5c43ef98556367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.0141509175, g: 1, b: 0.87452465, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8738367368265058676
 PrefabInstance:
   m_ObjectHideFlags: 0
