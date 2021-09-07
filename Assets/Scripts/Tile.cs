@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
   
 }
 
-enum ETileType
+public enum ETileType
 {
     GOOD_GUY,
     OBJECT,
