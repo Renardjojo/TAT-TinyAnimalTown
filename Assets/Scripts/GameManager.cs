@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void InitLevelManager()
     {
         mLevelManager.mCharacter = mListCharacters[mCurrentCharacter];
+        mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }
 
     // Update is called once per frame

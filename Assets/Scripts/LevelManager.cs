@@ -7,7 +7,8 @@ using UnityEngine;
 public enum EGameState
 {
     PATH_SELECTION,
-    MOVE
+    MOVE,
+    SCORE
 };
 
 public class LevelManager : MonoBehaviour
@@ -28,6 +29,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] protected bool mUseMobileInput = false;
 #endif
     
+    [Header("MoveStep")]
+    [SerializeField] protected Coroutine mMoveCoroutine;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -43,16 +47,38 @@ public class LevelManager : MonoBehaviour
                 UpdatePathSelectionLogic();
                 break;
             case EGameState.MOVE:
-                UpdateMoveLogic();
+                break;
+            case EGameState.SCORE:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
 
-    void UpdateMoveLogic()
+    protected IEnumerator MoveCorroutine()
     {
-        
+        float t = 0f;
+        Vector3 fromPos = mCharacter.transform.position;
+
+        mCharacter.mAnimator.SetTrigger("JumpSame");
+        do
+        {
+            t += Time.deltaTime;
+            mCharacter.transform.position = Vector3.Lerp(fromPos, mCharacter.mPath.First().transform.position, t);
+            Debug.Log(mCharacter.transform.position);
+            yield return null;
+        } while (t < 1f);
+
+        mCharacter.mPath.RemoveAt(0);
+
+        if (mCharacter.mPath.Count != 0)
+        {
+            StartCoroutine(MoveCorroutine());
+        }
+        else
+        {
+            SetGameState(EGameState.SCORE);
+        }
     }
     
     void UpdatePathSelectionLogic()
@@ -78,15 +104,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void SetGameState(EGameState newGS)
+    public void SetGameState(EGameState newGS)
     {
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
+                mCharacter = Instantiate(mCharacter, mFromTile.transform.position, Quaternion.identity);
                 mCharacter.mPath.Clear();
                 mCharacter.mPath.Add(mFromTile);
                 break;
             case EGameState.MOVE:
+                mMoveCoroutine = StartCoroutine(MoveCorroutine());
+                break;
+            case EGameState.SCORE:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newGS), newGS, null);
@@ -97,18 +127,29 @@ public class LevelManager : MonoBehaviour
     
     bool IsTileAdjacentToLastOnPath(Tile tileToAdd)
     {
-        return (tileToAdd.transform.position - mCharacter.mPath.Last().transform.position).sqrMagnitude <= Tile.TILE_SIZE;
+        Vector2 direction = new Vector2(tileToAdd.transform.position.x - mCharacter.mPath.Last().transform.position.x,
+            tileToAdd.transform.position.z - mCharacter.mPath.Last().transform.position.z);
+        return direction.sqrMagnitude <= Tile.TILE_SIZE;
     }
     
     public void AddPath(Tile tileToAdd)
     {
+        Debug.Log("AddPath call");
         //check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
             if (tileToAdd == mCharacter.mPath[i])
             {
-                mCharacter.mPath.RemoveRange(i, mCharacter.mPath.Count - i);
-                return; // don't add the tile
+                if (tileToAdd == mFromTile)
+                {
+                    mCharacter.mPath.RemoveRange(1, mCharacter.mPath.Count - i);
+                }
+                else
+                {
+                    mCharacter.mPath.RemoveRange(i + 1, mCharacter.mPath.Count - i);
+                }
+                Debug.Log("Path exist and exite");
+                return;
             }
         }
         
@@ -117,9 +158,13 @@ public class LevelManager : MonoBehaviour
         {
             //Is path done ?
             if (tileToAdd == mToTile)
+            {
                 SetGameState(EGameState.MOVE);
-                
+                Debug.Log("Done");
+            }
+
             mCharacter.mPath.Add(tileToAdd);
+            Debug.Log("Tile added");
         }
     }
 }
