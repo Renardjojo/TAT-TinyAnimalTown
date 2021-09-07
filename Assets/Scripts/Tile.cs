@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-  
+    [SerializeField] private ETileType tileType;
 }
 
 public enum ETileType
