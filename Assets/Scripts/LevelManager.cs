@@ -52,11 +52,9 @@ public class LevelManager : MonoBehaviour
     void UpdatePathSelectionLogic()
     {
 #if UNITY_EDITOR
-        bool isClic = (!mUseMobileInput && Input.GetMouseButton(0)) || Input.touchCount == 1;        
-        bool isClicDown = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || Input.touchCount == 1;        
+        bool isClic = (!mUseMobileInput && Input.GetMouseButton(0)) || Input.touchCount == 1;     
 #elif UNITY_STANDALONE
-        bool isClic = Input.GetMouseButton(0);
-        bool isClicDown = Input.GetMouseButtonDown(0));        
+        bool isClic = Input.GetMouseButton(0);     
 #else
         bool isClic = Input.touchCount == 1;
 #endif        
@@ -68,15 +66,7 @@ public class LevelManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "aisle")
-                {
-
-                }
-                else if (hit.transform.tag == "escape")
-                {
-
-                }
-                
+                mCharacter.AddPath(hit.transform.GetComponent<Tile>());
                 Debug.DrawLine(mCam.transform.position, hit.point, Color.green, 1f);
             }
         }
