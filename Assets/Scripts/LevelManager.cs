@@ -85,14 +85,17 @@ public class LevelManager : MonoBehaviour
     {
         float t = 0f;
         Vector3 fromPos = mCharacter.transform.position;
-
+        Vector3 toPos = new Vector3(mCharacter.mPath.First().transform.position.x,
+            mCharacter.mPath.First().transform.position.y + Tile.TILE_SIZE,
+            mCharacter.mPath.First().transform.position.z);
+        
         // Play jump animation
         PlayAnimation(mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y);
         
         do
         {
             t += Time.deltaTime;
-            mCharacter.transform.position = Vector3.Lerp(fromPos, mCharacter.mPath.First().transform.position, t);
+            mCharacter.transform.position = Vector3.Lerp(fromPos, toPos, t);
             yield return null;
         } while (t < 1f);
 
@@ -137,7 +140,8 @@ public class LevelManager : MonoBehaviour
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
-                mCharacter = Instantiate(mCharacter, mFromTile.transform.position, Quaternion.identity);
+                Vector3 newPos = new Vector3(mFromTile.transform.position.x, mFromTile.transform.position.y + Tile.TILE_SIZE, mFromTile.transform.position.z);
+                mCharacter = Instantiate(mCharacter, newPos, Quaternion.identity);
                 mCharacter.mPath.Clear();
                 mCharacter.mPath.Add(mFromTile);
                 break;

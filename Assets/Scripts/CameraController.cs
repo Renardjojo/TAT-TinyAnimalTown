@@ -27,7 +27,6 @@ public class CameraController : MonoBehaviour
                 t = 1f;
                 isRotate = false;
             }
-            Debug.Log(t + " " + Mathf.Lerp(yStart, yGoal, t));
             transform.rotation = Quaternion.Euler(new Vector3(0f, Mathf.Lerp(yStart, yGoal, t), 0f));
             
         }
