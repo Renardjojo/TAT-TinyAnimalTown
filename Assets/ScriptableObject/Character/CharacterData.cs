@@ -5,7 +5,7 @@ using UnityEngine;
 public struct TileEffectOnCharacter
 {
     public ETileType mTileType;
-    public ETileEffect mEffect;
+    public float mTimeEffect;
 }
 
 [System.Serializable]
@@ -14,7 +14,17 @@ public class CharacterData : ScriptableObject
 {
     [Header("Identity")] public string mName;
     public GameObject mMeshPrefab;
-    
-    [SerializeField]
-    public List<TileEffectOnCharacter> mTilesEffectOnCharacter = new List<TileEffectOnCharacter>();
+
+    [SerializeField] public TileEffectOnCharacter[] mTilesEffectOnCharacter;
+
+    void Start()
+    {
+        mTilesEffectOnCharacter = new TileEffectOnCharacter[(int)ETileType.COUNT];
+        
+        for (int i = 0; i < (int)ETileType.COUNT; i++)
+        {
+            mTilesEffectOnCharacter[i].mTileType = (ETileType)i;
+            mTilesEffectOnCharacter[i].mTileType = 0f;
+        }
+    }
 }

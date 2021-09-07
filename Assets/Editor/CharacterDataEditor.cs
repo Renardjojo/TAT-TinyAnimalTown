@@ -66,6 +66,17 @@ public class CharacterDataEditor : Editor
         }
 
         {
+            if (GUILayout.Button("Reset"))
+            {
+                Target.mTilesEffectOnCharacter = new TileEffectOnCharacter[(int)ETileType.COUNT];
+        
+                for (int i = 0; i < (int)ETileType.COUNT; i++)
+                {
+                    Target.mTilesEffectOnCharacter[i].mTileType = (ETileType)i;
+                    Target.mTilesEffectOnCharacter[i].mTimeEffect = 2f;
+                }
+            }
+            
             if (GUILayout.Button("Save"))
             {
                 EditorUtility.SetDirty(Target);

@@ -14,7 +14,11 @@ public enum EGameState
 public class LevelManager : MonoBehaviour
 {
     protected EGameState mGameState = EGameState.PATH_SELECTION;
-    
+
+    [Header("Game attribut")]
+    public float mBestTime = 0f;
+    public float mCurrentTime = 0f; // Current time in game
+
     [Header("Objects")]
     public Camera mCam;
     public Character mCharacter;
@@ -55,25 +59,49 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    protected IEnumerator MoveCorroutine()
+    void PlayAnimation(float deltaY)
+    {
+        if (deltaY < 0f)
+        {
+            mCharacter.mAnimator.SetTrigger("JumpLow");
+        }
+        else if (deltaY > 0f)
+        {
+            mCharacter.mAnimator.SetTrigger("JumpHigh");
+        }
+        else
+        {
+            mCharacter.mAnimator.SetTrigger("JumpSame");
+        }
+    }
+
+    void ApplyTileEffect()
+    {
+        mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType]
+            .mTimeEffect;
+    }
+
+    protected IEnumerator MoveCoroutine()
     {
         float t = 0f;
         Vector3 fromPos = mCharacter.transform.position;
 
-        mCharacter.mAnimator.SetTrigger("JumpSame");
+        // Play jump animation
+        PlayAnimation(mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y);
+        
         do
         {
             t += Time.deltaTime;
             mCharacter.transform.position = Vector3.Lerp(fromPos, mCharacter.mPath.First().transform.position, t);
-            Debug.Log(mCharacter.transform.position);
             yield return null;
         } while (t < 1f);
 
+        ApplyTileEffect();
         mCharacter.mPath.RemoveAt(0);
 
         if (mCharacter.mPath.Count != 0)
         {
-            StartCoroutine(MoveCorroutine());
+            StartCoroutine(MoveCoroutine());
         }
         else
         {
@@ -114,7 +142,9 @@ public class LevelManager : MonoBehaviour
                 mCharacter.mPath.Add(mFromTile);
                 break;
             case EGameState.MOVE:
-                mMoveCoroutine = StartCoroutine(MoveCorroutine());
+                //Remove the first path that is the start position
+                mCharacter.mPath.RemoveAt(0);
+                mMoveCoroutine = StartCoroutine(MoveCoroutine());
                 break;
             case EGameState.SCORE:
                 break;

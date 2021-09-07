@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public static float TILE_SIZE = 1f;
-    [SerializeField] private ETileType tileType;
+    [SerializeField] public ETileType tileType;
 }
 
 public enum ETileType
@@ -20,13 +20,5 @@ public enum ETileType
     SLOPE_DOWN,
     SLOPE_UP,
     STAIR,
-    COUNT
-}
-
-public enum ETileEffect
-{
-    FAST, 
-    SLOW,
-    BLOCK,
     COUNT
 }
