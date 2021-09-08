@@ -239,6 +239,7 @@ public class LevelManager : MonoBehaviour
             
             mCharacter.mPath[i].mOutlineScipt.OutlineWidth =
                 mOutlineAnimCurve.Evaluate(t) * mOutlineWidth;
+            
         }
     }
 }

@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     void NextLevel()
     {
         mCurrentCharacter = ++mCurrentCharacter % mListCharacters.Count;
-        
-        mLevelManager.mCharacter = mListCharacters[++mCurrentCharacter];
+
+        mLevelManager.mCharacter = mListCharacters[mCurrentCharacter];
         mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }
 
