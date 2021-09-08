@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
         mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }
 
+    public void ResetGame()
+    {
+        mCurrentCharacter = -1;
+        mLevelManager.ResetLevel();
+    }
+
     // Update is called once per frame
     void Update()
     {
