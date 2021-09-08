@@ -168,23 +168,25 @@ public class LevelManager : MonoBehaviour
                 mLevelATM.Play();
                 break;
             case EGameState.MOVE:
+                Debug.Log("MOVE");
                 //Remove the first path that is the start position
                 mCharacter.mPath.RemoveAt(0);
                 mMoveCoroutine = StartCoroutine(MoveCoroutine());
                 break;
             case EGameState.SCORE:
+                Debug.Log("SCORE");
                 float scoreRatio = mCurrentTime / mBestTime;
                 if (scoreRatio > 0.8)
                 {
-                    mAnimator.SetTrigger("showWin3Start");
+                    mAnimator.SetTrigger("showWin3Star");
                 }
                 else if (scoreRatio > 0.5)
                 {
-                    mAnimator.SetTrigger("showWin2Start");
+                    mAnimator.SetTrigger("showWin2Star");
                 }
                 else
                 {
-                    mAnimator.SetTrigger("showWin1Start");
+                    mAnimator.SetTrigger("showWin1Star");
                 }
                 
                 mLevelATM.Stop();

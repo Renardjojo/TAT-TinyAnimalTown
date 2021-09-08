@@ -1171,6 +1171,16 @@ PrefabInstance:
       objectReference: {fileID: 1118688048098470681}
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
+      propertyPath: mLevelATM
+      value: 
+      objectReference: {fileID: 6584547257138767813}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mGameMusique
+      value: 
+      objectReference: {fileID: 6584547257138767812}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
       propertyPath: mOutlineWidth
       value: 8
       objectReference: {fileID: 0}
@@ -1221,3 +1231,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+--- !u!82 &6584547257138767812 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2638011880211511533, guid: e9451a6eb756178499ec9d121a582777,
+    type: 3}
+  m_PrefabInstance: {fileID: 6584547257138767811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6584547257138767813 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7530112141229107525, guid: e9451a6eb756178499ec9d121a582777,
+    type: 3}
+  m_PrefabInstance: {fileID: 6584547257138767811}
+  m_PrefabAsset: {fileID: 0}
