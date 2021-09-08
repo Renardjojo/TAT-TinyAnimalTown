@@ -21,13 +21,13 @@ MonoBehaviour:
   - mTileType: 1
     mTimeEffect: 120
   - mTileType: 2
-    mTimeEffect: 240
+    mTimeEffect: 120
   - mTileType: 3
-    mTimeEffect: 240
+    mTimeEffect: 120
   - mTileType: 4
     mTimeEffect: 0
   - mTileType: 5
-    mTimeEffect: 120
+    mTimeEffect: 240
   - mTileType: 6
     mTimeEffect: 60
   - mTileType: 7
