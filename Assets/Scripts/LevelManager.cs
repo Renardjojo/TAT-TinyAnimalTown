@@ -136,6 +136,12 @@ public class LevelManager : MonoBehaviour
         mUIChono.SetValueAsTime(mCurrentTime);
     }
     
+    void ResetCurrentTime()
+    {
+        mCurrentTime = 0f;
+        mUIChono.SetValueAsTime(mCurrentTime);
+    }
+
     void ApplyTileEffect(bool isTurning, bool isGoDown, bool isGoUp)
     {
         //Apply altitude effect
@@ -175,7 +181,8 @@ public class LevelManager : MonoBehaviour
             mCharacter.mPath.First().transform.position.z);
         
         // Play jump animation
-        float deltaY = mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y;
+        float deltaY = mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y + Tile.TILE_SIZE;
+        Debug.Log(deltaY);
         if (deltaY < 0f)
         {
             isGoDown = true;
@@ -246,11 +253,10 @@ public class LevelManager : MonoBehaviour
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
-                ResetLevel();
+                InitLevel();
                 mLevelATM?.Play();
                 break;
             case EGameState.MOVE:
-                Debug.Log("MOVE");
                 //Remove the first path that is the start position
                 mCharacter.mPath.RemoveAt(0);
                 mMoveCoroutine = StartCoroutine(MoveCoroutine());
@@ -340,12 +346,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void ResetLevel()
+    void InitLevel()
     {
         Vector3 newPos = new Vector3(mFromTile.transform.position.x, mFromTile.transform.position.y + Tile.TILE_SIZE, mFromTile.transform.position.z);
         mCharacter.transform.position = newPos;
         mCharacter.ClearPath();
         mCharacter.mPath.Add(mFromTile);
+        ResetCurrentTime();
+    }
+
+    public void ResetLevel()
+    {
+        SetGameState(EGameState.PATH_SELECTION);
     }
 
     void AnimatePathOulineFX()

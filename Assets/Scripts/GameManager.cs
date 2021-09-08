@@ -9,6 +9,7 @@ public struct LevelData
     public Tile from;
     public Tile to;
     public Character character;
+    public float bestTime;
 }
 public class GameManager : MonoBehaviour
 {
@@ -30,13 +31,14 @@ public class GameManager : MonoBehaviour
         mCurrentLevel = ++mCurrentLevel % mLevelList.Count;
         
         if (mLevelManager.mCharacter)
-            gameObject.SetActive(false);
+            mLevelManager.mCharacter.gameObject.SetActive(false);
         
         mLevelManager.mCharacter = mLevelList[mCurrentLevel].character;
         mLevelManager.mCharacter.gameObject.SetActive(true);
         
         mLevelManager.mFromTile = mLevelList[mCurrentLevel].from;
         mLevelManager.mToTile = mLevelList[mCurrentLevel].to;
+        mLevelManager.mBestTime = mLevelList[mCurrentLevel].bestTime;
         
         mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }

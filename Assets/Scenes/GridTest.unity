@@ -427,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -652,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -876,6 +876,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faa2fa5b9f6114b4f998a14979524942, type: 3}
+--- !u!114 &1797225476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6431960384467591245, guid: faa2fa5b9f6114b4f998a14979524942,
+    type: 3}
+  m_PrefabInstance: {fileID: 587800653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce56d4b0395dc1048990bbcdb0cc98df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1919823585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
@@ -1158,6 +1170,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[0].to
+      value: 
+      objectReference: {fileID: 627075709}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[1].to
+      value: 
+      objectReference: {fileID: 627075709}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[2].to
+      value: 
+      objectReference: {fileID: 1118688048098470681}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[0].from
+      value: 
+      objectReference: {fileID: 1118688048098470681}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[1].from
+      value: 
+      objectReference: {fileID: 1797225476}
+    - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mLevelList.Array.data[2].from
+      value: 
+      objectReference: {fileID: 627075709}
     - target: {fileID: 6584547257692979605, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: orthographic
@@ -1188,5 +1230,105 @@ PrefabInstance:
       propertyPath: mFromTile
       value: 
       objectReference: {fileID: 1118688048098470681}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineFXOffset
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineFXDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mMaxPitchDefaultTouchTile
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mMinPitchDefaultTouchTile
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_PostInfinity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mTouchTileDefaultSound.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].inSlope
+      value: 5.0048833
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].inSlope
+      value: -0.033001438
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].outSlope
+      value: 5.0048833
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].inWeight
+      value: 0.35948342
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].outSlope
+      value: -0.033001438
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].outWeight
+      value: 0.044173557
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530112141229107525, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9451a6eb756178499ec9d121a582777, type: 3}
