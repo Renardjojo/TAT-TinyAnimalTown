@@ -12,7 +12,7 @@ public class CharacterFXController : MonoBehaviour
     public AudioSource mJumpStartSound;
     public AudioSource mAnimalSound;
     [Range(0f, 1f)]
-    public float mAnimalSoundApparitionChanceOnJump;
+    public float mAnimalSoundApparitionChanceOnJump = 0.33f;
     
     // Start is called before the first frame update
     void Start()

@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
     public AudioSource mTileRefusedSound;
     public AudioSource mBonusSound;
     public AudioSource mMalusSound;
+    public AudioSource mLastTileSound;
 
     // Start is called before the first frame update
     void Start()
@@ -188,6 +189,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            mLastTileSound?.Play();
             SetGameState(EGameState.SCORE);
         }
     }
