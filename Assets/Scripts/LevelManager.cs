@@ -155,10 +155,8 @@ public class LevelManager : MonoBehaviour
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
-                Vector3 newPos = new Vector3(mFromTile.transform.position.x, mFromTile.transform.position.y + Tile.TILE_SIZE, mFromTile.transform.position.z);
-                mCharacter = Instantiate(mCharacter, newPos, Quaternion.identity);
-                mCharacter.mPath.Clear();
-                mCharacter.mPath.Add(mFromTile);
+                mCharacter = Instantiate(mCharacter);
+                ResetLevel();
                 break;
             case EGameState.MOVE:
                 //Remove the first path that is the start position
@@ -215,7 +213,10 @@ public class LevelManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        
+        Vector3 newPos = new Vector3(mFromTile.transform.position.x, mFromTile.transform.position.y + Tile.TILE_SIZE, mFromTile.transform.position.z);
+        mCharacter.transform.position = newPos;
+        mCharacter.ClearPath();
+        mCharacter.mPath.Add(mFromTile);
     }
 
     void AnimatePathOulineFX()

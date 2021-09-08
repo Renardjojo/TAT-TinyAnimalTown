@@ -39,4 +39,9 @@ public class Character : MonoBehaviour
         mPath[index].UnSelect();
         mPath.RemoveAt(index);
     }
+
+    public void ClearPath()
+    {
+        RemoveTile(0, mPath.Count);
+    }
 }
