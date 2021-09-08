@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Objects")]
     public List<Character> mListCharacters;
-    protected int mCurrentCharacter = 0;
+    protected int mCurrentCharacter = -1;
     
     [SerializeField]
     public LevelManager mLevelManager;
@@ -14,12 +15,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitLevelManager();
+        NextLevel();
     }
 
-    void InitLevelManager()
+    void NextLevel()
     {
-        mLevelManager.mCharacter = mListCharacters[mCurrentCharacter];
+        mCurrentCharacter = ++mCurrentCharacter % mListCharacters.Count;
+        
+        mLevelManager.mCharacter = mListCharacters[++mCurrentCharacter];
         mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }
 
