@@ -25,14 +25,16 @@ MonoBehaviour:
   - mTileType: 3
     mTimeEffect: 120
   - mTileType: 4
-    mTimeEffect: 0
+    mTimeEffect: 120
   - mTileType: 5
     mTimeEffect: 120
   - mTileType: 6
-    mTimeEffect: 30
+    mTimeEffect: 120
   - mTileType: 7
-    mTimeEffect: 480
+    mTimeEffect: 120
   - mTileType: 8
-    mTimeEffect: 0
+    mTimeEffect: 120
   - mTileType: 9
+    mTimeEffect: 120
+  - mTileType: 10
     mTimeEffect: 120

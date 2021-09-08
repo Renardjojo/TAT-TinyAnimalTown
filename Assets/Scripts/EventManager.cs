@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public AudioSource mSoundStarWin;
+    public AudioSource mSoundStarWin1;
+    public AudioSource mSoundStarWin2;
+    public AudioSource mSoundStarWin3;
     public AudioSource mJingle1Star;
     public AudioSource mJingle2Star;
     public AudioSource mJingle3Star;
     public AudioSource mSetReadyGoSound;
 
-    public void PlayerWinStarEvent()
+    public void PlayerWinStar1Event()
     {
-        mSoundStarWin?.Play();
+        mSoundStarWin1?.Play();
+    }
+    public void PlayerWinStar2Event()
+    {
+        mSoundStarWin2?.Play();
+    }
+    public void PlayerWinStar3Event()
+    {
+        mSoundStarWin3?.Play();
     }
     
     public void Player1StartEvent()
@@ -32,6 +42,7 @@ public class EventManager : MonoBehaviour
     
     public void PlaySetReadyGoEvent()
     {
-        mSetReadyGoSound?.Play();
+        if (mSetReadyGoSound)
+            mSetReadyGoSound.Play();
     }
 }

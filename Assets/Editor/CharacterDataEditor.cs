@@ -73,7 +73,7 @@ public class CharacterDataEditor : Editor
                 for (int i = 0; i < (int)ETileType.COUNT; i++)
                 {
                     Target.mTilesEffectOnCharacter[i].mTileType = (ETileType)i;
-                    Target.mTilesEffectOnCharacter[i].mTimeEffect = 2f;
+                    Target.mTilesEffectOnCharacter[i].mTimeEffect = 120f;
                 }
             }
             

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum EGameState
 {
@@ -56,6 +57,7 @@ public class LevelManager : MonoBehaviour
     public AudioSource mBonusSound;
     public AudioSource mMalusSound;
     public AudioSource mLastTileSound;
+    public AudioSource[] mTouchTileDefaultSound;
 
     // Start is called before the first frame update
     void Start()
@@ -157,11 +159,11 @@ public class LevelManager : MonoBehaviour
     {
         if (CheckAndTurnCharacter(mCharacter.mPath.First()))
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_TURN].mTimeEffect);
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect);
         }
         else
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_LINE].mTimeEffect);
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
         }
         
         float t = 0f;
@@ -213,7 +215,6 @@ public class LevelManager : MonoBehaviour
                 AddPath(hit.transform.GetComponent<Tile>());
                 Debug.DrawLine(mCam.transform.position, hit.point, Color.red, 1f);
             }
-            
         }
     }
     
@@ -279,8 +280,15 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        tileToAdd.mSound?.Play();
-        
+        if (tileToAdd.mSound)
+        {
+            tileToAdd.mSound.Play();
+        }
+        else
+        {
+            mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
+        }
+
         //check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {

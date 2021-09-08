@@ -41,8 +41,9 @@ public enum ETileType
 {
     GOOD_GUY,
     OBJECT,
-    PEDESTRIAN_LINE,
-    PEDESTRIAN_TURN,
+    ROAD,
+    LINE,
+    TURN,
     BUILDING,
     SEWER,
     SLOPE_DOWN,

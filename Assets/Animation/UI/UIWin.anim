@@ -5126,7 +5126,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.5833334
-    functionName: PlayerWinStarEvent
+    functionName: PlayerWinStar1Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

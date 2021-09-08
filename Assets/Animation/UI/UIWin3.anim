@@ -6476,21 +6476,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.6
-    functionName: PlayerWinStarEvent
+    functionName: PlayerWinStar1Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.0833333
-    functionName: PlayerWinStarEvent
+    functionName: PlayerWinStar2Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.6
-    functionName: PlayerWinStarEvent
+    functionName: PlayerWinStar3Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

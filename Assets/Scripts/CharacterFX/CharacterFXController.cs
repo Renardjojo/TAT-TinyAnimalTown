@@ -10,6 +10,8 @@ public class CharacterFXController : MonoBehaviour
     
     [Header("Jump Start")]
     public AudioSource mJumpStartSound;
+    public float mMinPitchjumpStart = -3f;
+    public float mMaxPitchjumpStart = 3f;
     public AudioSource mAnimalSound;
     [Range(0f, 1f)]
     public float mAnimalSoundApparitionChanceOnJump = 0.33f;
@@ -28,7 +30,7 @@ public class CharacterFXController : MonoBehaviour
 
     public void PlayerJumpStart()
     {
-        mJumpStartSound.pitch = Random.Range(-3f, 3f);
+        mJumpStartSound.pitch = Random.Range(mMinPitchjumpStart, mMaxPitchjumpStart);
         mJumpStartSound?.Play();
 
         if (Random.value < mAnimalSoundApparitionChanceOnJump)
