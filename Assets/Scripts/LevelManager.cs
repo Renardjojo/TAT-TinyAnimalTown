@@ -44,11 +44,19 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXOffset = 0.1f;
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
+
+    [Header("UI")]
+    public Animator mAnimator;
     
+    [Header("Sound/Music")]
+    public AudioSource mLevelATM;
+    public AudioSource mGameMusique;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mGameMusique.Play();
     }
 
     // Update is called once per frame
@@ -157,6 +165,7 @@ public class LevelManager : MonoBehaviour
             case EGameState.PATH_SELECTION:
                 mCharacter = Instantiate(mCharacter);
                 ResetLevel();
+                mLevelATM.Play();
                 break;
             case EGameState.MOVE:
                 //Remove the first path that is the start position
@@ -164,6 +173,21 @@ public class LevelManager : MonoBehaviour
                 mMoveCoroutine = StartCoroutine(MoveCoroutine());
                 break;
             case EGameState.SCORE:
+                float scoreRatio = mCurrentTime / mBestTime;
+                if (scoreRatio > 0.8)
+                {
+                    mAnimator.SetTrigger("showWin3Start");
+                }
+                else if (scoreRatio > 0.5)
+                {
+                    mAnimator.SetTrigger("showWin2Start");
+                }
+                else
+                {
+                    mAnimator.SetTrigger("showWin1Start");
+                }
+                
+                mLevelATM.Stop();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newGS), newGS, null);
