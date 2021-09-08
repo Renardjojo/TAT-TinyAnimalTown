@@ -46,7 +46,8 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXDuration = 1f;
 
     [Header("UI")]
-    public Animator mAnimator;
+    public Animator mUIAnimator;
+    [SerializeField] protected TextController mUIChono;
     
     [Header("Sound/Music")]
     public AudioSource mLevelATM;
@@ -96,6 +97,7 @@ public class LevelManager : MonoBehaviour
     {
         mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType]
             .mTimeEffect;
+        mUIChono.SetValueAsTime(mCurrentTime);
     }
 
     protected IEnumerator MoveCoroutine()
@@ -178,15 +180,15 @@ public class LevelManager : MonoBehaviour
                 float scoreRatio = mCurrentTime / mBestTime;
                 if (scoreRatio > 0.8)
                 {
-                    mAnimator.SetTrigger("showWin3Star");
+                    mUIAnimator.SetTrigger("showWin3Star");
                 }
                 else if (scoreRatio > 0.5)
                 {
-                    mAnimator.SetTrigger("showWin2Star");
+                    mUIAnimator.SetTrigger("showWin2Star");
                 }
                 else
                 {
-                    mAnimator.SetTrigger("showWin1Star");
+                    mUIAnimator.SetTrigger("showWin1Star");
                 }
                 
                 mLevelATM.Stop();

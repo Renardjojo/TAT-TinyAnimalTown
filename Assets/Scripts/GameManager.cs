@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         NextLevel();
     }
 
-    void NextLevel()
+    public void NextLevel()
     {
         mCurrentCharacter = ++mCurrentCharacter % mListCharacters.Count;
 
