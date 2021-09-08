@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     
     //--------- Ouline FX------------//
     public Outline mOutlineScipt;
+    public AudioSource mSound;
 
     void Awake()
     {

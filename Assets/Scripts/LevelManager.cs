@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXOffset = 0.1f;
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
-
+        
     [Header("UI")]
     public Animator mUIAnimator;
     [SerializeField] protected TextController mUIChono;
@@ -52,12 +52,14 @@ public class LevelManager : MonoBehaviour
     [Header("Sound/Music")]
     public AudioSource mLevelATM;
     public AudioSource mGameMusique;
-
+    public AudioSource mTileRefusedSound;
+    public AudioSource mBonusSound;
+    public AudioSource mMalusSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        mGameMusique.Play();
+        mGameMusique?.Play();
     }
 
     // Update is called once per frame
@@ -123,11 +125,24 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
+    void CheckAndPlayEffectSound(float value)
+    {
+        if (value < 120f)
+        {
+            mBonusSound?.Play();
+        }
+        else if (value > 120f)
+        {
+            mMalusSound?.Play();
+        }
+    }
+    
     void AddTimeToCurrent(float timeToAdd)
     {
         if (timeToAdd == 0f)
             return;
-        
+
+        CheckAndPlayEffectSound(timeToAdd);
         mCurrentTime += timeToAdd;
         mUIChono.SetValueAsTime(mCurrentTime);
     }
@@ -141,11 +156,11 @@ public class LevelManager : MonoBehaviour
     {
         if (CheckAndTurnCharacter(mCharacter.mPath.First()))
         {
-            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_TURN].mTimeEffect;
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_TURN].mTimeEffect);
         }
         else
         {
-            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_LINE].mTimeEffect;
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_LINE].mTimeEffect);
         }
         
         float t = 0f;
@@ -213,7 +228,7 @@ public class LevelManager : MonoBehaviour
             case EGameState.PATH_SELECTION:
                 mCharacter = Instantiate(mCharacter);
                 ResetLevel();
-                mLevelATM.Play();
+                mLevelATM?.Play();
                 break;
             case EGameState.MOVE:
                 Debug.Log("MOVE");
@@ -255,6 +270,15 @@ public class LevelManager : MonoBehaviour
     
     public void AddPath(Tile tileToAdd)
     {
+        //Check if tile can be added
+        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
+        {
+            mTileRefusedSound?.Play();
+            return;
+        }
+
+        tileToAdd.mSound?.Play();
+        
         //check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
