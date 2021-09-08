@@ -19,4 +19,24 @@ public class Character : MonoBehaviour
     void Update()
     {
     }
+
+    public void AddTile(Tile tileToAdd)
+    {
+        mPath.Add(tileToAdd);
+        tileToAdd.Select();
+    }
+
+    public void RemoveTile(int from, int to)
+    {
+        for (int i = from; i < to; i++)
+        {
+            RemoveTile(from);
+        }
+    }
+    
+    public void RemoveTile(int index)
+    {
+        mPath[index].UnSelect();
+        mPath.RemoveAt(index);
+    }
 }

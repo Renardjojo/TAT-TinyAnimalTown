@@ -16,25 +16,34 @@ public class LevelManager : MonoBehaviour
     protected EGameState mGameState = EGameState.PATH_SELECTION;
 
     [Header("Game attribut")]
-    public float mBestTime = 0f;
-    public float mCurrentTime = 0f; // Current time in game
+        public float mBestTime = 0f;
+        public float mCurrentTime = 0f; // Current time in game
 
     [Header("Objects")]
-    public Camera mCam;
-    public Character mCharacter;
-    
-    public Tile mFromTile;
+        public Camera mCam;
+        public Character mCharacter;
+        
+        public Tile mFromTile;
     
     [Tooltip("Destination")]
-    public Tile mToTile;
+        public Tile mToTile;
     
 #if UNITY_EDITOR
     [Header("PathStep")]
-    [SerializeField] protected bool mUseMobileInput = false;
+        [SerializeField] protected bool mUseMobileInput = false;
 #endif
     
     [Header("MoveStep")]
-    [SerializeField] protected Coroutine mMoveCoroutine;
+        [SerializeField] protected Coroutine mMoveCoroutine;
+
+    [Header("FX")]
+        [SerializeField] protected AnimationCurve mOutlineAnimCurve;
+        private float mTimeAcculatedOulineEffect;
+        public float mOutlineWidth;
+        [Range(0f, 1f)]
+        public float mOutlineFXOffset = 0.1f;
+        [Range(0f, 10f)]
+        public float mOutlineFXDuration = 1f;
     
     // Start is called before the first frame update
     void Start()
@@ -111,8 +120,8 @@ public class LevelManager : MonoBehaviour
             SetGameState(EGameState.SCORE);
         }
     }
-    
-    void UpdatePathSelectionLogic()
+
+    void UpdateSelectionPathControl()
     {
 #if UNITY_EDITOR
         bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || Input.touchCount == 1;     
@@ -133,6 +142,12 @@ public class LevelManager : MonoBehaviour
             }
             
         }
+    }
+    
+    void UpdatePathSelectionLogic()
+    {
+        UpdateSelectionPathControl();
+        AnimatePathOulineFX();
     }
 
     public void SetGameState(EGameState newGS)
@@ -168,7 +183,6 @@ public class LevelManager : MonoBehaviour
     
     public void AddPath(Tile tileToAdd)
     {
-        Debug.Log("AddPath call");
         //check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
@@ -176,13 +190,12 @@ public class LevelManager : MonoBehaviour
             {
                 if (tileToAdd == mFromTile)
                 {
-                    mCharacter.mPath.RemoveRange(1, mCharacter.mPath.Count - i);
+                    mCharacter.RemoveTile(1, mCharacter.mPath.Count - i);
                 }
                 else
                 {
-                    mCharacter.mPath.RemoveRange(i + 1, mCharacter.mPath.Count - i);
+                    mCharacter.RemoveTile(i + 1, mCharacter.mPath.Count);
                 }
-                Debug.Log("Path exist and exite");
                 return;
             }
         }
@@ -194,11 +207,37 @@ public class LevelManager : MonoBehaviour
             if (tileToAdd == mToTile)
             {
                 SetGameState(EGameState.MOVE);
-                Debug.Log("Done");
             }
 
-            mCharacter.mPath.Add(tileToAdd);
-            Debug.Log("Tile added");
+            mCharacter.AddTile(tileToAdd);
+        }
+    }
+
+    public void ResetLevel()
+    {
+        
+    }
+
+    void AnimatePathOulineFX()
+    {
+        mTimeAcculatedOulineEffect += Time.deltaTime / mOutlineFXDuration;
+        if (mTimeAcculatedOulineEffect > 1f)
+        {
+            mTimeAcculatedOulineEffect = 1f - mTimeAcculatedOulineEffect;
+        }
+
+        float add = 0f;
+        for (int i = mCharacter.mPath.Count - 1; i >= 0; i--)
+        {
+            add += mOutlineFXOffset;
+            float t = mTimeAcculatedOulineEffect + add;
+            while (t > 1f)
+            {
+                t = t - 1f;
+            }
+            
+            mCharacter.mPath[i].mOutlineScipt.OutlineWidth =
+                mOutlineAnimCurve.Evaluate(t) * mOutlineWidth;
         }
     }
 }
