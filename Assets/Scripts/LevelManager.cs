@@ -93,15 +93,61 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    Vector2 Convert3DPosTo2DPos(Vector3 pos)
+    {
+        return new Vector2(pos.x, pos.z);
+    }
+    
+    //Return true if rotation append
+    bool CheckAndTurnCharacter(Tile TileToGo)
+    {
+        Vector2 toPos = Convert3DPosTo2DPos(TileToGo.transform.position);
+        Vector2 fromPos = Convert3DPosTo2DPos(mCharacter.transform.position);
+        Vector2 dirCharToGoal = (toPos - fromPos).normalized;
+        float dot = Vector2.Dot(Convert3DPosTo2DPos(mCharacter.transform.forward), dirCharToGoal);
+
+        //Need to turn
+        if (Mathf.Abs(dot) < 0.5)
+        {
+            //Turn left
+            if (dot > 0f)
+            {
+                mCharacter.transform.forward = new Vector3(dirCharToGoal.x, mCharacter.transform.forward.y, dirCharToGoal.y);
+            }
+            else //Turn right
+            {
+                mCharacter.transform.forward = new Vector3(-dirCharToGoal.x, mCharacter.transform.forward.y, -dirCharToGoal.y);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    void AddTimeToCurrent(float timeToAdd)
+    {
+        if (timeToAdd == 0f)
+            return;
+        
+        mCurrentTime += timeToAdd;
+        mUIChono.SetValueAsTime(mCurrentTime);
+    }
+    
     void ApplyTileEffect()
     {
-        mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType]
-            .mTimeEffect;
-        mUIChono.SetValueAsTime(mCurrentTime);
+        AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect);
     }
 
     protected IEnumerator MoveCoroutine()
     {
+        if (CheckAndTurnCharacter(mCharacter.mPath.First()))
+        {
+            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_TURN].mTimeEffect;
+        }
+        else
+        {
+            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_LINE].mTimeEffect;
+        }
+        
         float t = 0f;
         Vector3 fromPos = mCharacter.transform.position;
         Vector3 toPos = new Vector3(mCharacter.mPath.First().transform.position.x,
@@ -117,7 +163,7 @@ public class LevelManager : MonoBehaviour
             mCharacter.transform.position = Vector3.Lerp(fromPos, toPos, t);
             yield return null;
         } while (t < 1f);
-
+        
         ApplyTileEffect();
         mCharacter.mPath.RemoveAt(0);
 
