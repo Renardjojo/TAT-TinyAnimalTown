@@ -72,8 +72,10 @@ public class LevelManager : MonoBehaviour
         {
             case EGameState.PATH_SELECTION:
                 UpdatePathSelectionLogic();
+                AnimatePathOulineFX();
                 break;
             case EGameState.MOVE:
+                AnimatePathOulineFX();
                 break;
             case EGameState.SCORE:
                 break;
@@ -198,7 +200,7 @@ public class LevelManager : MonoBehaviour
         
         // Apply time effect
         ApplyTileEffect(isTurning, isGoDown, isGoUp);
-        mCharacter.mPath.RemoveAt(0);
+        mCharacter.RemoveTile(0);
 
         if (mCharacter.mPath.Count != 0)
         {
@@ -206,7 +208,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            mLastTileSound?.Play();
+            if (mLastTileSound)
+                mLastTileSound.Play();
             SetGameState(EGameState.SCORE);
         }
     }
@@ -236,7 +239,6 @@ public class LevelManager : MonoBehaviour
     void UpdatePathSelectionLogic()
     {
         UpdateSelectionPathControl();
-        AnimatePathOulineFX();
     }
 
     public void SetGameState(EGameState newGS)
@@ -244,7 +246,6 @@ public class LevelManager : MonoBehaviour
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
-                mCharacter = Instantiate(mCharacter);
                 ResetLevel();
                 mLevelATM?.Play();
                 break;

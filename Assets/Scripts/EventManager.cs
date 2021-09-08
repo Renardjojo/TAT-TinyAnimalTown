@@ -42,7 +42,6 @@ public class EventManager : MonoBehaviour
     
     public void PlaySetReadyGoEvent()
     {
-        if (mSetReadyGoSound)
-            mSetReadyGoSound.Play();
+        mSetReadyGoSound?.Play();
     }
 }
