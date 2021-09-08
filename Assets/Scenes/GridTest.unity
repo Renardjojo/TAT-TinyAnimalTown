@@ -780,6 +780,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faa2fa5b9f6114b4f998a14979524942, type: 3}
+--- !u!95 &1215169236 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1643141825, guid: e9451a6eb756178499ec9d121a582777,
+    type: 3}
+  m_PrefabInstance: {fileID: 6584547257138767811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1578118496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
@@ -1069,6 +1075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310057005, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 865338612314966614, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_RootOrder
@@ -1164,6 +1174,11 @@ PrefabInstance:
       propertyPath: mToTile
       value: 
       objectReference: {fileID: 627075709}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mAnimator
+      value: 
+      objectReference: {fileID: 1215169236}
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: mFromTile
