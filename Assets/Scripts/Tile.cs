@@ -42,13 +42,13 @@ public enum ETileType
     GOOD_GUY,
     OBJECT,
     ROAD,
-    LINE,
-    TURN,
     BUILDING,
     SEWER,
-    SLOPE_DOWN,
-    SLOPE_UP,
     STAIR,
     PEDESTRIAN_CROSS,
+    DOWN,
+    UP,
+    LINE,
+    TURN,
     COUNT
 }
