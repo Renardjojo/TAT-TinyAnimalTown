@@ -34,3 +34,5 @@ MonoBehaviour:
     mTimeEffect: 120
   - mTileType: 8
     mTimeEffect: 480
+  - mTileType: 9
+    mTimeEffect: 240

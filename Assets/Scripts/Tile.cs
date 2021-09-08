@@ -47,5 +47,6 @@ public enum ETileType
     SLOPE_DOWN,
     SLOPE_UP,
     STAIR,
+    PEDESTRIAN_CROSS,
     COUNT
 }
