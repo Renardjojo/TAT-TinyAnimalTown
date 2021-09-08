@@ -148,10 +148,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -223,10 +238,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -364,10 +394,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -458,7 +503,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &682916990
 Transform:
@@ -490,10 +535,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -559,10 +619,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -628,10 +703,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -703,10 +793,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -778,10 +883,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -865,10 +985,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682916990}
     m_Modifications:
+    - target: {fileID: 1058934955175291240, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252273082977558213, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
       propertyPath: m_Name
       value: Road
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431960384467591244, guid: faa2fa5b9f6114b4f998a14979524942,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6431960384467591246, guid: faa2fa5b9f6114b4f998a14979524942,
         type: 3}
@@ -1022,7 +1157,7 @@ PrefabInstance:
     - target: {fileID: 6584547257692979605, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
@@ -1042,7 +1177,12 @@ PrefabInstance:
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: mOutlineFXOffset
-      value: 0.05
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineFXDuration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
@@ -1058,6 +1198,26 @@ PrefabInstance:
         type: 3}
       propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mOutlineAnimCurve.m_Curve.Array.data[1].outSlope
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9451a6eb756178499ec9d121a582777, type: 3}
