@@ -38,11 +38,15 @@ public class CameraController : MonoBehaviour
         mIsInTargetMode = false;
         mCam.transform.localRotation = mBaseCameraAngle;
     }
-    
+
+    void Awake()
+    {
+        mBaseCameraAngle = mCam.transform.localRotation; 
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        mBaseCameraAngle = mCam.transform.localRotation;
         mFreeModeOrthoSize = mCam.orthographicSize;
     }
 
