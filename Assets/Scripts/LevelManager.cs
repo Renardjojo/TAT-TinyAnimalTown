@@ -140,9 +140,11 @@ public class LevelManager : MonoBehaviour
     {
         if (timeToAdd == 0f)
             return;
-
-        TextMeshPro text = Instantiate(mPrefabScorePopupText, mCharacter.transform.position + Vector3.up * Tile.TILE_SIZE, Camera.main.transform.rotation).GetComponent<TextMeshPro>();
-        text.text = "+" + timeToAdd.ToString();
+        
+        TextMeshPro text = Instantiate(mPrefabScorePopupText, mCharacter.transform.position + Vector3.up * Tile.TILE_SIZE, Camera.main.transform.rotation).GetComponentInChildren<TextMeshPro>();
+        
+        var ts = TimeSpan.FromSeconds(timeToAdd);
+        text.text = string.Format("+{0:00}m{1:00}", ts.TotalMinutes, ts.Seconds);
         const float timeMax = 480f;
         const float timeMin = 30f;
         text.color = Color.Lerp(Color.green, Color.red, timeToAdd / (timeMax - timeMin));
@@ -161,27 +163,29 @@ public class LevelManager : MonoBehaviour
     void ApplyTileEffect(bool isTurning, bool isGoDown, bool isGoUp)
     {
         //Apply altitude effect
+        float timeToAdd = 0f;
         if (isGoUp)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect;
         }
         else if (isGoDown)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.DOWN].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.DOWN].mTimeEffect;
         }
         
         //Apply turn effect
         if (isTurning)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect;
         }
         else
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect;
         }
         
         // Apply tile effect
-        AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect);
+        timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect;
+        AddTimeToCurrent(timeToAdd);
     }
 
     protected IEnumerator MoveCoroutine()
