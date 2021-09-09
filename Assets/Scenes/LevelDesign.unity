@@ -6257,6 +6257,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseScene
       objectReference: {fileID: 0}
+    - target: {fileID: 4204294992087775186, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a69e31cb4b50d64b801f3f5b6b51b2c, type: 2}
+    - target: {fileID: 4204294992178478389, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -8067726398312463513, guid: 778f1adbc00405143b2bbc68b671b2d9,
+        type: 3}
+    - target: {fileID: 4204294993109179054, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d32f6cb9854f0394184525b46ac66de3, type: 2}
     - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: mLevelList.Array.data[0].to
