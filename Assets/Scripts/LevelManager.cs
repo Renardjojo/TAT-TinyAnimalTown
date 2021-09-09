@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum EGameState
 {
@@ -19,7 +20,8 @@ public class LevelManager : MonoBehaviour
         public float mBestTime = 0f;
         public float mCurrentTime = 0f; // Current time in game
 
-    [Header("Objects")]
+        [Header("Objects")]
+        public CameraController mCamController;
         public Camera mCam;
         public Character mCharacter;
         
@@ -44,20 +46,24 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXOffset = 0.1f;
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
-
+        
     [Header("UI")]
-    public Animator mUIAnimator;
-    [SerializeField] protected TextController mUIChono;
+        public Animator mUIAnimator;
+        [SerializeField] protected TextController mUIChono;
     
     [Header("Sound/Music")]
-    public AudioSource mLevelATM;
-    public AudioSource mGameMusique;
-
+        public AudioSource mLevelATM;
+        public AudioSource mGameMusique;
+        public AudioSource mTileRefusedSound;
+        public AudioSource mBonusSound;
+        public AudioSource mMalusSound;
+        public AudioSource mLastTileSound;
+        public AudioSource[] mTouchTileDefaultSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        mGameMusique.Play();
+        mGameMusique?.Play();
     }
 
     // Update is called once per frame
@@ -67,8 +73,10 @@ public class LevelManager : MonoBehaviour
         {
             case EGameState.PATH_SELECTION:
                 UpdatePathSelectionLogic();
+                AnimatePathOulineFX();
                 break;
             case EGameState.MOVE:
+                AnimatePathOulineFX();
                 break;
             case EGameState.SCORE:
                 break;
@@ -76,24 +84,8 @@ public class LevelManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-
-    void PlayAnimation(float deltaY)
-    {
-        if (deltaY < 0f)
-        {
-            mCharacter.mAnimator.SetTrigger("JumpLow");
-        }
-        else if (deltaY > 0f)
-        {
-            mCharacter.mAnimator.SetTrigger("JumpHigh");
-        }
-        else
-        {
-            mCharacter.mAnimator.SetTrigger("JumpSame");
-        }
-    }
-
-    Vector2 Convert3DPosTo2DPos(Vector3 pos)
+    
+    Vector2 Convert3DPosTo2DPosXZ(Vector3 pos)
     {
         return new Vector2(pos.x, pos.z);
     }
@@ -101,10 +93,10 @@ public class LevelManager : MonoBehaviour
     //Return true if rotation append
     bool CheckAndTurnCharacter(Tile TileToGo)
     {
-        Vector2 toPos = Convert3DPosTo2DPos(TileToGo.transform.position);
-        Vector2 fromPos = Convert3DPosTo2DPos(mCharacter.transform.position);
+        Vector2 toPos = Convert3DPosTo2DPosXZ(TileToGo.transform.position);
+        Vector2 fromPos = Convert3DPosTo2DPosXZ(mCharacter.transform.position);
         Vector2 dirCharToGoal = (toPos - fromPos).normalized;
-        float dot = Vector2.Dot(Convert3DPosTo2DPos(mCharacter.transform.forward), dirCharToGoal);
+        float dot = Vector2.Dot(Convert3DPosTo2DPosXZ(mCharacter.transform.forward), dirCharToGoal);
 
         //Need to turn
         if (Mathf.Abs(dot) < 0.5)
@@ -122,31 +114,66 @@ public class LevelManager : MonoBehaviour
         }
         return false;
     }
-
+    
+    void CheckAndPlayEffectSound(float value)
+    {
+        if (value < 120f)
+        {
+            mBonusSound?.Play();
+        }
+        else if (value > 120f)
+        {
+            mMalusSound?.Play();
+        }
+    }
+    
     void AddTimeToCurrent(float timeToAdd)
     {
         if (timeToAdd == 0f)
             return;
-        
+
+        CheckAndPlayEffectSound(timeToAdd);
         mCurrentTime += timeToAdd;
         mUIChono.SetValueAsTime(mCurrentTime);
     }
     
-    void ApplyTileEffect()
+    void ResetCurrentTime()
     {
+        mCurrentTime = 0f;
+        mUIChono.SetValueAsTime(mCurrentTime);
+    }
+
+    void ApplyTileEffect(bool isTurning, bool isGoDown, bool isGoUp)
+    {
+        //Apply altitude effect
+        if (isGoUp)
+        {
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect);
+        }
+        else if (isGoDown)
+        {
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.DOWN].mTimeEffect);
+        }
+        
+        //Apply turn effect
+        if (isTurning)
+        {
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect);
+        }
+        else
+        {
+            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
+        }
+        
+        // Apply tile effect
         AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect);
     }
 
     protected IEnumerator MoveCoroutine()
     {
-        if (CheckAndTurnCharacter(mCharacter.mPath.First()))
-        {
-            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_TURN].mTimeEffect;
-        }
-        else
-        {
-            mCurrentTime += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.PEDESTRIAN_LINE].mTimeEffect;
-        }
+        bool isTurning = CheckAndTurnCharacter(mCharacter.mPath.First());
+        bool isGoDown = false;
+        bool isGoUp = false;
         
         float t = 0f;
         Vector3 fromPos = mCharacter.transform.position;
@@ -155,7 +182,22 @@ public class LevelManager : MonoBehaviour
             mCharacter.mPath.First().transform.position.z);
         
         // Play jump animation
-        PlayAnimation(mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y);
+        float deltaY = mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y + Tile.TILE_SIZE;
+        Debug.Log(deltaY);
+        if (deltaY < 0f)
+        {
+            isGoDown = true;
+            mCharacter.mAnimator.SetTrigger("JumpLow");
+        }
+        else if (deltaY > 0f)
+        {
+            isGoUp = true;
+            mCharacter.mAnimator.SetTrigger("JumpHigh");
+        }
+        else
+        {
+            mCharacter.mAnimator.SetTrigger("JumpSame");
+        }
         
         do
         {
@@ -164,8 +206,9 @@ public class LevelManager : MonoBehaviour
             yield return null;
         } while (t < 1f);
         
-        ApplyTileEffect();
-        mCharacter.mPath.RemoveAt(0);
+        // Apply time effect
+        ApplyTileEffect(isTurning, isGoDown, isGoUp);
+        mCharacter.RemoveTile(0);
 
         if (mCharacter.mPath.Count != 0)
         {
@@ -173,6 +216,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            if (mLastTileSound)
+                mLastTileSound.Play();
             SetGameState(EGameState.SCORE);
         }
     }
@@ -196,14 +241,12 @@ public class LevelManager : MonoBehaviour
                 AddPath(hit.transform.GetComponent<Tile>());
                 Debug.DrawLine(mCam.transform.position, hit.point, Color.red, 1f);
             }
-            
         }
     }
     
     void UpdatePathSelectionLogic()
     {
         UpdateSelectionPathControl();
-        AnimatePathOulineFX();
     }
 
     public void SetGameState(EGameState newGS)
@@ -211,15 +254,16 @@ public class LevelManager : MonoBehaviour
         switch (newGS)
         {
             case EGameState.PATH_SELECTION:
-                mCharacter = Instantiate(mCharacter);
-                ResetLevel();
-                mLevelATM.Play();
+                InitLevel();
+                mLevelATM?.Play();
                 break;
             case EGameState.MOVE:
-                Debug.Log("MOVE");
                 //Remove the first path that is the start position
                 mCharacter.mPath.RemoveAt(0);
                 mMoveCoroutine = StartCoroutine(MoveCoroutine());
+                
+                mCamController.mTarget = mCharacter.transform;
+                mCamController.SetInTargetMode();
                 break;
             case EGameState.SCORE:
                 Debug.Log("SCORE");
@@ -255,6 +299,13 @@ public class LevelManager : MonoBehaviour
     
     public void AddPath(Tile tileToAdd)
     {
+        //Check if tile can be added
+        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
+        {
+            mTileRefusedSound?.Play();
+            return;
+        }
+
         //check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
@@ -268,6 +319,7 @@ public class LevelManager : MonoBehaviour
                 {
                     mCharacter.RemoveTile(i + 1, mCharacter.mPath.Count);
                 }
+                mTileRefusedSound?.Play();
                 return;
             }
         }
@@ -281,16 +333,36 @@ public class LevelManager : MonoBehaviour
                 SetGameState(EGameState.MOVE);
             }
 
+            if (tileToAdd.mSound)
+            {
+                tileToAdd.mSound.Play();
+            }
+            else
+            {
+                mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
+            }
+            
             mCharacter.AddTile(tileToAdd);
+        }
+        else
+        {
+            mTileRefusedSound?.Play();
         }
     }
 
-    public void ResetLevel()
+    void InitLevel()
     {
         Vector3 newPos = new Vector3(mFromTile.transform.position.x, mFromTile.transform.position.y + Tile.TILE_SIZE, mFromTile.transform.position.z);
         mCharacter.transform.position = newPos;
         mCharacter.ClearPath();
         mCharacter.mPath.Add(mFromTile);
+        ResetCurrentTime();
+        mCamController.SetInFreeMode();
+    }
+
+    public void ResetLevel()
+    {
+        SetGameState(EGameState.PATH_SELECTION);
     }
 
     void AnimatePathOulineFX()

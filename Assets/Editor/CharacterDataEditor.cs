@@ -9,11 +9,13 @@ public class CharacterDataEditor : Editor
     // Custom form for Player Preferences
     private CharacterData Target;
     private SerializedProperty mListProperty;
+    private SerializedProperty mListSoundProperty;
     
     private void OnEnable()
     {
         Target = (CharacterData) target;
         mListProperty = serializedObject.FindProperty("mTilesEffectOnCharacter");
+        mListSoundProperty = serializedObject.FindProperty("mSounds");
     }
     
     Editor gameObjectEditor;
@@ -64,6 +66,10 @@ public class CharacterDataEditor : Editor
         {
             EditorGUILayout.PropertyField(mListProperty, true);
         }
+        
+        {
+            EditorGUILayout.PropertyField(mListSoundProperty, true);
+        }
 
         {
             if (GUILayout.Button("Reset"))
@@ -73,7 +79,7 @@ public class CharacterDataEditor : Editor
                 for (int i = 0; i < (int)ETileType.COUNT; i++)
                 {
                     Target.mTilesEffectOnCharacter[i].mTileType = (ETileType)i;
-                    Target.mTilesEffectOnCharacter[i].mTimeEffect = 2f;
+                    Target.mTilesEffectOnCharacter[i].mTimeEffect = 120f;
                 }
             }
             

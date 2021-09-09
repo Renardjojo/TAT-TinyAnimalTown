@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct LevelData
+{
+    public Tile from;
+    public Tile to;
+    public Character character;
+    public float bestTime;
+}
 public class GameManager : MonoBehaviour
 {
     [Header("Objects")]
-    public List<Character> mListCharacters;
-    protected int mCurrentCharacter = -1;
+    public List<LevelData> mLevelList;
+    protected int mCurrentLevel = -1;
     
     [SerializeField]
     public LevelManager mLevelManager;
@@ -20,15 +28,24 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        mCurrentCharacter = ++mCurrentCharacter % mListCharacters.Count;
-
-        mLevelManager.mCharacter = mListCharacters[mCurrentCharacter];
+        mCurrentLevel = ++mCurrentLevel % mLevelList.Count;
+        
+        if (mLevelManager.mCharacter)
+            mLevelManager.mCharacter.gameObject.SetActive(false);
+        
+        mLevelManager.mCharacter = mLevelList[mCurrentLevel].character;
+        mLevelManager.mCharacter.gameObject.SetActive(true);
+        
+        mLevelManager.mFromTile = mLevelList[mCurrentLevel].from;
+        mLevelManager.mToTile = mLevelList[mCurrentLevel].to;
+        mLevelManager.mBestTime = mLevelList[mCurrentLevel].bestTime;
+        
         mLevelManager.SetGameState(EGameState.PATH_SELECTION);
     }
 
     public void ResetGame()
     {
-        mCurrentCharacter = -1;
+        mCurrentLevel = -1;
         mLevelManager.ResetLevel();
     }
 

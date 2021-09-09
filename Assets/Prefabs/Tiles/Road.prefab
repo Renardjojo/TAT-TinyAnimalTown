@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058934955175291240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.462, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 6431960384467591246}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: -8851711989615107646, guid: ca14dc91139caf7418ff263984508b9a, type: 3}
   - {fileID: 454191482458552811, guid: ca14dc91139caf7418ff263984508b9a, type: 3}
-  - {fileID: 4694482566480387667, guid: ca14dc91139caf7418ff263984508b9a, type: 3}
+  - {fileID: 454191482458552811, guid: 932c41b269f26224f917fdcc4428b506, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce56d4b0395dc1048990bbcdb0cc98df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 2
+  tileType: 4
   mOutlineScipt: {fileID: 0}
 --- !u!65 &6252273083356552574
 BoxCollider:
@@ -225,7 +225,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &8043577060879572088
 MonoBehaviour:
   m_ObjectHideFlags: 0

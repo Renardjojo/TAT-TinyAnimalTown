@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     
     //--------- Ouline FX------------//
     public Outline mOutlineScipt;
+    public AudioSource mSound;
 
     void Awake()
     {
@@ -40,12 +41,14 @@ public enum ETileType
 {
     GOOD_GUY,
     OBJECT,
-    PEDESTRIAN_LINE,
-    PEDESTRIAN_TURN,
+    ROAD,
     BUILDING,
     SEWER,
-    SLOPE_DOWN,
-    SLOPE_UP,
     STAIR,
+    PEDESTRIAN_CROSS,
+    DOWN,
+    UP,
+    LINE,
+    TURN,
     COUNT
 }

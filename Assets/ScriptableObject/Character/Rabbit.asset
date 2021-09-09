@@ -12,25 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaf45c0e9609bf43b7708516566a4c5, type: 3}
   m_Name: Rabbit
   m_EditorClassIdentifier: 
-  mName: Turtle
+  mName: Rabbit
   mMeshPrefab: {fileID: 919132149155446097, guid: 10bc54b256aed4d438f6aa34e781a0c8,
     type: 3}
   mTilesEffectOnCharacter:
   - mTileType: 0
     mTimeEffect: 120
   - mTileType: 1
-    mTimeEffect: 240
+    mTimeEffect: 120
   - mTileType: 2
-    mTimeEffect: 60
+    mTimeEffect: 120
   - mTileType: 3
-    mTimeEffect: 480
+    mTimeEffect: 120
   - mTileType: 4
-    mTimeEffect: 0
+    mTimeEffect: 120
   - mTileType: 5
     mTimeEffect: 120
   - mTileType: 6
-    mTimeEffect: 30
+    mTimeEffect: 120
   - mTileType: 7
-    mTimeEffect: 240
+    mTimeEffect: 120
   - mTileType: 8
     mTimeEffect: 120
+  - mTileType: 9
+    mTimeEffect: 120
+  - mTileType: 10
+    mTimeEffect: 120
+  mSounds:
+  - {fileID: 8300000, guid: 08cca0466ce1ee7468d71662441141cb, type: 3}
+  - {fileID: 8300000, guid: 75c6969734713c749aa537828864c054, type: 3}
+  - {fileID: 8300000, guid: 15b6087a77e067e4186d5ec2a34626ba, type: 3}
+  - {fileID: 8300000, guid: 53b425d7ea6532d4d8dd37937a4f24c8, type: 3}
+  - {fileID: 8300000, guid: 7ca17f985a7af89409dc0c8b89e418d3, type: 3}
+  - {fileID: 8300000, guid: 094ae2b0d30a7b646b91e0dda578aff5, type: 3}

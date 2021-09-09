@@ -4,16 +4,44 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Camera mCam;
     public float RotationSpeed = 1f;
     private float t = 0f;
     private float yStart;
     private float yGoal;
     private bool isRotate = false;
-    
 
+    public Transform mTarget;
+    private bool mIsInTargetMode = false;
+    public float mTargetModeOrthoSize = 2f;
+    private float mFreeModeOrthoSize = 5f;
+    [Range(0f, 5f)]
+    [SerializeField] protected float mFadeSpeed = 2f;
+    public AnimationCurve mFadeAnimation;
+
+
+    public void SetInTargetMode()
+    {
+        if (!mIsInTargetMode)
+            StartCoroutine(ZoomFreeToTarget());
+        
+        mIsInTargetMode = true;
+        mFreeModeOrthoSize = mCam.orthographicSize;
+    }
+
+    public void SetInFreeMode()
+    {
+        if (mIsInTargetMode)
+            StartCoroutine(ZoomTargetToFree());
+        
+        mIsInTargetMode = false;
+        mCam.transform.localRotation = Quaternion.Euler(45f, 0f, 0f);
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
+        mFreeModeOrthoSize = mCam.orthographicSize;
     }
 
     // Update is called once per frame
@@ -30,6 +58,9 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, Mathf.Lerp(yStart, yGoal, t), 0f));
             
         }
+        
+        if (mIsInTargetMode)
+           mCam.transform.LookAt(mTarget.position, Vector3.up);
     }
 
     public void RotateLeft90()
@@ -52,5 +83,27 @@ public class CameraController : MonoBehaviour
             isRotate = true;
             t = 0f;
         }
+    }
+    
+    protected IEnumerator ZoomFreeToTarget()
+    {
+        float t = 0f;
+        do
+        {
+            t += Time.deltaTime / mFadeSpeed;
+            mCam.orthographicSize = Mathf.Lerp(mFreeModeOrthoSize, mTargetModeOrthoSize, mFadeAnimation.Evaluate(t));
+            yield return null;
+        } while (t < 1f);
+    }
+    
+    protected IEnumerator ZoomTargetToFree()
+    {
+        float t = 0f;
+        do
+        {
+            t += Time.deltaTime / mFadeSpeed;
+            mCam.orthographicSize = Mathf.Lerp(mTargetModeOrthoSize, mFreeModeOrthoSize, mFadeAnimation.Evaluate(t));
+            yield return null;
+        } while (t < 1f);
     }
 }
