@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 4
   mOutlineScipt: {fileID: 0}
+  mSound: {fileID: 0}
 --- !u!65 &6252273083356552574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0, g: 0.13764693, b: 0.5568628, a: 1}
+  outlineColor: {r: 0.015686275, g: 1, b: 0.8745098, a: 1}
   outlineWidth: 0
   precomputeOutline: 1
   bakeKeys:

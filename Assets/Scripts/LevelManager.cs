@@ -64,7 +64,6 @@ public class LevelManager : MonoBehaviour
         public AudioSource mMalusSound;
         public AudioSource mLastTileSound;
         public AudioSource[] mTouchTileDefaultSound;
-        public AudioSource mLastTileSelectSound;
 
     // Start is called before the first frame update
     void Start()
@@ -278,11 +277,11 @@ public class LevelManager : MonoBehaviour
                 break;
             case EGameState.SCORE:
                 float scoreRatio = mCurrentTime / mBestTime;
-                if (scoreRatio > 0.8)
+                if (scoreRatio < 1.2)
                 {
                     mUIAnimator.SetTrigger("showWin3Star");
                 }
-                else if (scoreRatio > 0.5)
+                else if (scoreRatio < 1.5)
                 {
                     mUIAnimator.SetTrigger("showWin2Star");
                 }
@@ -340,15 +339,22 @@ public class LevelManager : MonoBehaviour
             float deltaY = mCharacter.mPath.Last().transform.position.y - tileToAdd.transform.position.y;
             if (deltaY > Tile.TILE_SIZE / 2f)
             {
-                if (!(mCharacter.mPath.Last().tileType == ETileType.STAIR || mCharacter.mPath.Last().tileType == ETileType.STEP_ROAD))
+                Debug.Log(deltaY);
+                if (!(tileToAdd.tileType == ETileType.STAIR || tileToAdd.tileType == ETileType.STEP_ROAD))
                     return false;
+            }
+            else if (deltaY < -Tile.TILE_SIZE / 2f)
+            {
+                Debug.Log(deltaY);
+                if (!(mCharacter.mPath.Last().tileType == ETileType.STAIR || mCharacter.mPath.Last().tileType == ETileType.STEP_ROAD))
+                    return false; 
             }
         }
         
         //Is path done ?
         if (tileToAdd == mToTile)
         {
-            mLastTileSelectSound?.Play();
+            mLastTileSound?.Play();
             SetGameState(EGameState.MOVE);
         }
 
