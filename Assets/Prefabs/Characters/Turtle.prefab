@@ -121,9 +121,9 @@ MonoBehaviour:
   mAudioJumpEnd: {fileID: 908939233446869270}
   mParticleJumpEnd: {fileID: 3375411267301351379}
   mJumpStartSound: {fileID: 7855183383643291902}
-  mMinPitchjumpStart: -3
-  mMaxPitchjumpStart: 3
-  mAnimalSoundApparitionChanceOnJump: 0.33
+  mMinPitchjumpStart: 0.5
+  mMaxPitchjumpStart: 2
+  mAnimalSoundApparitionChanceOnJump: 0.5
 --- !u!82 &908939233446869270
 AudioSource:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 05069dbf3f441d14290c4be7ce01d575,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4c0d61935a8241f4ebcff3a85266ac71, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
