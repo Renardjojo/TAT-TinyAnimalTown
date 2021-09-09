@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,6 +47,8 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXOffset = 0.1f;
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
+
+        public GameObject mFlag;
         
     [Header("UI")]
         public Animator mUIAnimator;
@@ -358,6 +361,8 @@ public class LevelManager : MonoBehaviour
         mCharacter.mPath.Add(mFromTile);
         ResetCurrentTime();
         mCamController.SetInFreeMode();
+
+        mFlag.transform.position = mToTile.transform.position + Vector3.up * Tile.TILE_SIZE * 0.5f;
     }
 
     public void ResetLevel()
