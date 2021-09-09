@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public enum EGameState
 {
+    MENU,
     PATH_SELECTION,
     MOVE,
     SCORE
@@ -53,6 +54,7 @@ public class LevelManager : MonoBehaviour
     [Header("UI")]
         public Animator mUIAnimator;
         [SerializeField] protected TextController mUIChono;
+        [SerializeField] protected TextController mUIChonoBestTime;
     
     [Header("Sound/Music")]
         public AudioSource mLevelATM;
@@ -74,6 +76,8 @@ public class LevelManager : MonoBehaviour
     {
         switch (mGameState)
         {
+            case EGameState.MENU:
+                break;
             case EGameState.PATH_SELECTION:
                 UpdatePathSelectionLogic();
                 AnimatePathOulineFX();
@@ -256,6 +260,8 @@ public class LevelManager : MonoBehaviour
     {
         switch (newGS)
         {
+            case EGameState.MENU:
+                break;
             case EGameState.PATH_SELECTION:
                 InitLevel();
                 mLevelATM?.Play();
@@ -363,6 +369,7 @@ public class LevelManager : MonoBehaviour
         mCamController.SetInFreeMode();
 
         mFlag.transform.position = mToTile.transform.position + Vector3.up * Tile.TILE_SIZE * 0.5f;
+        mUIChonoBestTime.SetValueAsTime(mBestTime);
     }
 
     public void ResetLevel()

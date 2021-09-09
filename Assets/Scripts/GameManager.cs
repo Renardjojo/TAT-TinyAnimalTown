@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NextLevel();
+        mLevelManager.SetGameState(EGameState.MENU);
     }
 
     public void NextLevel()
