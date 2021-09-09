@@ -10,7 +10,7 @@ public class TextController : MonoBehaviour
     private Text mText;
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         mText = GetComponent<Text>();
     }
@@ -28,6 +28,9 @@ public class TextController : MonoBehaviour
     public void SetValueAsTime (float seconds)
     {
         var ts = TimeSpan.FromSeconds(seconds);
+        
+        if (mText == null)
+            mText = GetComponent<Text>();
         mText.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds);
     }
 }
