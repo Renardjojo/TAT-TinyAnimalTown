@@ -1278,6 +1278,11 @@ PrefabInstance:
       propertyPath: mLevelList.Array.data[3].from
       value: 
       objectReference: {fileID: 1118688048098470681}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6584547257692979605, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: orthographic
@@ -1427,6 +1432,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pitch
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921529629992966520, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: mFadeAnimation.m_Curve.Array.data[1].outSlope
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9451a6eb756178499ec9d121a582777, type: 3}

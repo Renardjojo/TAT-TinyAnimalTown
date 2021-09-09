@@ -20,7 +20,8 @@ public class LevelManager : MonoBehaviour
         public float mBestTime = 0f;
         public float mCurrentTime = 0f; // Current time in game
 
-    [Header("Objects")]
+        [Header("Objects")]
+        public CameraController mCamController;
         public Camera mCam;
         public Character mCharacter;
         
@@ -47,17 +48,17 @@ public class LevelManager : MonoBehaviour
         public float mOutlineFXDuration = 1f;
         
     [Header("UI")]
-    public Animator mUIAnimator;
-    [SerializeField] protected TextController mUIChono;
+        public Animator mUIAnimator;
+        [SerializeField] protected TextController mUIChono;
     
     [Header("Sound/Music")]
-    public AudioSource mLevelATM;
-    public AudioSource mGameMusique;
-    public AudioSource mTileRefusedSound;
-    public AudioSource mBonusSound;
-    public AudioSource mMalusSound;
-    public AudioSource mLastTileSound;
-    public AudioSource[] mTouchTileDefaultSound;
+        public AudioSource mLevelATM;
+        public AudioSource mGameMusique;
+        public AudioSource mTileRefusedSound;
+        public AudioSource mBonusSound;
+        public AudioSource mMalusSound;
+        public AudioSource mLastTileSound;
+        public AudioSource[] mTouchTileDefaultSound;
 
     // Start is called before the first frame update
     void Start()
@@ -260,6 +261,9 @@ public class LevelManager : MonoBehaviour
                 //Remove the first path that is the start position
                 mCharacter.mPath.RemoveAt(0);
                 mMoveCoroutine = StartCoroutine(MoveCoroutine());
+                
+                mCamController.mTarget = mCharacter.transform;
+                mCamController.SetInTargetMode();
                 break;
             case EGameState.SCORE:
                 Debug.Log("SCORE");
@@ -353,6 +357,7 @@ public class LevelManager : MonoBehaviour
         mCharacter.ClearPath();
         mCharacter.mPath.Add(mFromTile);
         ResetCurrentTime();
+        mCamController.SetInFreeMode();
     }
 
     public void ResetLevel()

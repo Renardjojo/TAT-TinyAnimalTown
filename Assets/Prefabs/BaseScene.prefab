@@ -96,7 +96,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5770159294057973403}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6584547257692979604}
@@ -115,7 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f054e52db8e95043940531b95e8afb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mCam: {fileID: 6584547257692979605}
   RotationSpeed: 1
+  mTarget: {fileID: 0}
+  mTargetModeOrthoSize: 2
 --- !u!1 &6584547256990572836
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6584547257692979607}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 4.59, z: -10.29}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3143116882144526446}
@@ -349,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBestTime: 0
   mCurrentTime: 0
+  mCamController: {fileID: 7921529629992966520}
   mCam: {fileID: 6584547257692979605}
   mCharacter: {fileID: 0}
   mFromTile: {fileID: 0}
@@ -2339,6 +2343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134856012445412255, guid: fbbf76b7daf4ef442b132731048e1a84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6138310963030891492, guid: fbbf76b7daf4ef442b132731048e1a84,
         type: 3}
