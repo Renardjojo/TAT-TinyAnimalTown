@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour
         public Character mCharacter;
         
         public Tile mFromTile;
-    
+
     [Tooltip("Destination")]
         public Tile mToTile;
     
@@ -49,6 +50,7 @@ public class LevelManager : MonoBehaviour
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
 
+        public GameObject mPrefabScorePopupText;
         public GameObject mFlag;
         
     [Header("UI")]
@@ -139,6 +141,12 @@ public class LevelManager : MonoBehaviour
         if (timeToAdd == 0f)
             return;
 
+        TextMeshPro text = Instantiate(mPrefabScorePopupText, mCharacter.transform.position + Vector3.up * Tile.TILE_SIZE, Camera.main.transform.rotation).GetComponent<TextMeshPro>();
+        text.text = "+" + timeToAdd.ToString();
+        const float timeMax = 480f;
+        const float timeMin = 30f;
+        text.color = Color.Lerp(Color.green, Color.red, timeToAdd / (timeMax - timeMin));
+        
         CheckAndPlayEffectSound(timeToAdd);
         mCurrentTime += timeToAdd;
         mUIChono.SetValueAsTime(mCurrentTime);
@@ -169,7 +177,6 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ligne");
             AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
         }
         
@@ -308,9 +315,9 @@ public class LevelManager : MonoBehaviour
     }
     
     public bool AddPath(Tile tileToAdd)
-    {
+    {        
         // Check if tile can be added (is Block ?)
-        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
+        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f && mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTileType != ETileType.STEP_ROAD)
             return false;
 
         // Check if previous tile is same (remove of list)
@@ -333,7 +340,7 @@ public class LevelManager : MonoBehaviour
         // Check if tile is nearest than another
         if (!IsTileAdjacentToLastOnPath(tileToAdd))
             return false;
-
+        
         //Check if tile is up or down and if previous is step
         {
             // Play jump animation
