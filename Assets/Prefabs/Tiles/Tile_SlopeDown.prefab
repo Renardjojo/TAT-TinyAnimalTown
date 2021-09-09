@@ -128,8 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce56d4b0395dc1048990bbcdb0cc98df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 6
+  tileType: 11
   mOutlineScipt: {fileID: 0}
+  mSound: {fileID: 0}
 --- !u!65 &302963130
 BoxCollider:
   m_ObjectHideFlags: 0
