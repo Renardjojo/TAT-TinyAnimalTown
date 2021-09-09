@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterFXController : MonoBehaviour
 {
+    public Character mCharacter;
+    
     [Header("Jump end")]
     [SerializeField] protected AudioSource mAudioJumpEnd;
     [SerializeField] protected ParticleSystem mParticleJumpEnd;
@@ -12,10 +14,9 @@ public class CharacterFXController : MonoBehaviour
     public AudioSource mJumpStartSound;
     public float mMinPitchjumpStart = -3f;
     public float mMaxPitchjumpStart = 3f;
-    public AudioSource mAnimalSound;
     [Range(0f, 1f)]
     public float mAnimalSoundApparitionChanceOnJump = 0.33f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class CharacterFXController : MonoBehaviour
 
         if (Random.value < mAnimalSoundApparitionChanceOnJump)
         {
-            mAnimalSound?.Play();
+            mCharacter?.PlayRandomAnimalSound();
         }
     }
     

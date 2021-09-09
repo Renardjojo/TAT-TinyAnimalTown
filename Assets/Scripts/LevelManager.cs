@@ -58,8 +58,6 @@ public class LevelManager : MonoBehaviour
     public AudioSource mMalusSound;
     public AudioSource mLastTileSound;
     public AudioSource[] mTouchTileDefaultSound;
-    [Range(0f, 1f)]
-    public float mChanceToPlayAnimalSoundOnJump = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -172,9 +170,6 @@ public class LevelManager : MonoBehaviour
 
     protected IEnumerator MoveCoroutine()
     {
-        if (Random.value < mChanceToPlayAnimalSoundOnJump)
-            mCharacter.PlayRandomAnimalSound();
-        
         bool isTurning = CheckAndTurnCharacter(mCharacter.mPath.First());
         bool isGoDown = false;
         bool isGoUp = false;
