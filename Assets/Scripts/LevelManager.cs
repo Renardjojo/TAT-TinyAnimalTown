@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -166,6 +164,7 @@ public class LevelManager : MonoBehaviour
         float timeToAdd = 0f;
         if (isGoUp)
         {
+            Debug.Log("Hight");
             timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect;
         }
         else if (isGoDown)
@@ -243,7 +242,7 @@ public class LevelManager : MonoBehaviour
     void UpdateSelectionPathControl()
     {
 #if UNITY_EDITOR
-        bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || Input.touchCount == 1;     
+        bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);     
 #elif UNITY_STANDALONE
         bool isClic = Input.GetMouseButton(0);     
 #else
