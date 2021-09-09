@@ -16,6 +16,7 @@ public class CharacterData : ScriptableObject
     public GameObject mMeshPrefab;
 
     [SerializeField] public TileEffectOnCharacter[] mTilesEffectOnCharacter;
+    [SerializeField] public AudioClip[] mSounds; 
 
     void Start()
     {

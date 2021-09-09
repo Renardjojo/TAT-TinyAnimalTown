@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Random = System.Random;
 
 public class Character : MonoBehaviour
 {
     public List<Tile> mPath;
     public CharacterData mUserData;
     public Animator mAnimator;
-        
+    public AudioSource mAnimalSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,5 +45,11 @@ public class Character : MonoBehaviour
     public void ClearPath()
     {
         RemoveTile(0, mPath.Count);
+    }
+
+    public void PlayRandomAnimalSound()
+    {
+        mAnimalSound.clip = mUserData.mSounds[UnityEngine.Random.Range(0, mUserData.mSounds.Length)];
+        mAnimalSound.Play();
     }
 }
