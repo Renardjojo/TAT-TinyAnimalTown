@@ -6296,6 +6296,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 3492356494812650444, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204294992087775184, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6140421211359035467, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_IsActive
@@ -6371,6 +6381,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.953717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.30070576
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584547257692979604, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6584547257692979605, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_ClearFlags
@@ -6389,7 +6429,7 @@ PrefabInstance:
     - target: {fileID: 6584547257692979605, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 4.34
       objectReference: {fileID: 0}
     - target: {fileID: 6584547257960851096, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
