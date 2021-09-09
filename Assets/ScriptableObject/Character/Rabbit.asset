@@ -35,15 +35,13 @@ MonoBehaviour:
   - mTileType: 8
     mTimeEffect: 240
   - mTileType: 9
-    mTimeEffect: 60
+    mTimeEffect: -60
   - mTileType: 10
     mTimeEffect: 240
   - mTileType: 11
-    mTimeEffect: 120
+    mTimeEffect: 0
   mSounds:
   - {fileID: 8300000, guid: 08cca0466ce1ee7468d71662441141cb, type: 3}
-  - {fileID: 8300000, guid: 75c6969734713c749aa537828864c054, type: 3}
-  - {fileID: 8300000, guid: 15b6087a77e067e4186d5ec2a34626ba, type: 3}
   - {fileID: 8300000, guid: 53b425d7ea6532d4d8dd37937a4f24c8, type: 3}
   - {fileID: 8300000, guid: 7ca17f985a7af89409dc0c8b89e418d3, type: 3}
   - {fileID: 8300000, guid: 094ae2b0d30a7b646b91e0dda578aff5, type: 3}

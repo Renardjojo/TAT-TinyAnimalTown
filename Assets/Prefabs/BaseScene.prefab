@@ -455,7 +455,6 @@ MonoBehaviour:
   - {fileID: 8075353349636789365}
   - {fileID: 6267686776572315210}
   - {fileID: 2501501563657222507}
-  mLastTileSelectSound: {fileID: 0}
 --- !u!82 &7530112141229107525
 AudioSource:
   m_ObjectHideFlags: 0

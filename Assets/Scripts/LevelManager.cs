@@ -169,6 +169,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Ligne");
             AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
         }
         
