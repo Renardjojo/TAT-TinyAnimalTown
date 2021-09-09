@@ -339,13 +339,11 @@ public class LevelManager : MonoBehaviour
             float deltaY = mCharacter.mPath.Last().transform.position.y - tileToAdd.transform.position.y;
             if (deltaY > Tile.TILE_SIZE / 2f)
             {
-                Debug.Log(deltaY);
                 if (!(tileToAdd.tileType == ETileType.STAIR || tileToAdd.tileType == ETileType.STEP_ROAD))
                     return false;
             }
             else if (deltaY < -Tile.TILE_SIZE / 2f)
             {
-                Debug.Log(deltaY);
                 if (!(mCharacter.mPath.Last().tileType == ETileType.STAIR || mCharacter.mPath.Last().tileType == ETileType.STEP_ROAD))
                     return false; 
             }
