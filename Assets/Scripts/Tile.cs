@@ -50,5 +50,6 @@ public enum ETileType
     UP,
     LINE,
     TURN,
+    STEP_ROAD,
     COUNT
 }

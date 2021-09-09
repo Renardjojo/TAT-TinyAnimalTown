@@ -186,7 +186,6 @@ public class LevelManager : MonoBehaviour
         
         // Play jump animation
         float deltaY = mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y + Tile.TILE_SIZE;
-        Debug.Log(deltaY);
         if (deltaY < 0f)
         {
             isGoDown = true;
@@ -241,7 +240,9 @@ public class LevelManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                AddPath(hit.transform.GetComponent<Tile>());
+                if (!AddPath(hit.transform.GetComponent<Tile>()))
+                    mTileRefusedSound?.Play();
+                
                 Debug.DrawLine(mCam.transform.position, hit.point, Color.red, 1f);
             }
         }
@@ -269,7 +270,6 @@ public class LevelManager : MonoBehaviour
                 mCamController.SetInTargetMode();
                 break;
             case EGameState.SCORE:
-                Debug.Log("SCORE");
                 float scoreRatio = mCurrentTime / mBestTime;
                 if (scoreRatio > 0.8)
                 {
@@ -300,16 +300,13 @@ public class LevelManager : MonoBehaviour
         return direction.sqrMagnitude <= Tile.TILE_SIZE;
     }
     
-    public void AddPath(Tile tileToAdd)
+    public bool AddPath(Tile tileToAdd)
     {
-        //Check if tile can be added
+        // Check if tile can be added (is Block ?)
         if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
-        {
-            mTileRefusedSound?.Play();
-            return;
-        }
-
-        //check if previous tile is same (remove of list)
+            return false;
+        
+        // Check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
             if (tileToAdd == mCharacter.mPath[i])
@@ -322,35 +319,43 @@ public class LevelManager : MonoBehaviour
                 {
                     mCharacter.RemoveTile(i + 1, mCharacter.mPath.Count);
                 }
-                mTileRefusedSound?.Play();
-                return;
+                return false;
             }
         }
         
-        //check if tile is nearst than another
-        if (IsTileAdjacentToLastOnPath(tileToAdd))
-        {
-            //Is path done ?
-            if (tileToAdd == mToTile)
-            {
-                SetGameState(EGameState.MOVE);
-            }
+        // Check if tile is nearest than another
+        if (!IsTileAdjacentToLastOnPath(tileToAdd))
+            return false;
 
-            if (tileToAdd.mSound)
+        //Check if tile is up or down and if previous is step
+        {
+            // Play jump animation
+            float deltaY = mCharacter.mPath.Last().transform.position.y - tileToAdd.transform.position.y;
+            if (deltaY != 0f)
             {
-                tileToAdd.mSound.Play();
+                if (!(mCharacter.mPath.Last().tileType == ETileType.STAIR || mCharacter.mPath.Last().tileType == ETileType.STEP_ROAD))
+                    return false;
             }
-            else
-            {
-                mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
-            }
-            
-            mCharacter.AddTile(tileToAdd);
+        }
+        
+        //Is path done ?
+        if (tileToAdd == mToTile)
+        {
+            SetGameState(EGameState.MOVE);
+        }
+
+        if (tileToAdd.mSound)
+        {
+            tileToAdd.mSound.Play();
         }
         else
         {
-            mTileRefusedSound?.Play();
+            mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
         }
+            
+        mCharacter.AddTile(tileToAdd);
+        
+        return true;
     }
 
     void InitLevel()

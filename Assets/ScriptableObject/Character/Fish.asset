@@ -21,11 +21,11 @@ MonoBehaviour:
   - mTileType: 1
     mTimeEffect: 120
   - mTileType: 2
-    mTimeEffect: 0
+    mTimeEffect: 120
   - mTileType: 3
     mTimeEffect: 0
   - mTileType: 4
-    mTimeEffect: 0
+    mTimeEffect: 120
   - mTileType: 5
     mTimeEffect: 0
   - mTileType: 6
@@ -37,6 +37,8 @@ MonoBehaviour:
   - mTileType: 9
     mTimeEffect: 120
   - mTileType: 10
+    mTimeEffect: 120
+  - mTileType: 11
     mTimeEffect: 120
   mSounds:
   - {fileID: 8300000, guid: 79d5b41327af6d64ba274bfda9577b77, type: 3}
