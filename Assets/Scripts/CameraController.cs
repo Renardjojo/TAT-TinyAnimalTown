@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] protected float mFadeSpeed = 2f;
     public AnimationCurve mFadeAnimation;
 
+    private Quaternion mBaseCameraAngle;
 
     public void SetInTargetMode()
     {
@@ -35,9 +36,14 @@ public class CameraController : MonoBehaviour
             StartCoroutine(ZoomTargetToFree());
         
         mIsInTargetMode = false;
-        mCam.transform.localRotation = Quaternion.Euler(45f, 0f, 0f);
+        mCam.transform.localRotation = mBaseCameraAngle;
     }
-    
+
+    void Awake()
+    {
+        mBaseCameraAngle = mCam.transform.localRotation; 
+    }
+
     // Start is called before the first frame update
     void Start()
     {

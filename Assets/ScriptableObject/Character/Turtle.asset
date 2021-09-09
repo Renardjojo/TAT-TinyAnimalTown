@@ -38,4 +38,6 @@ MonoBehaviour:
     mTimeEffect: 120
   - mTileType: 10
     mTimeEffect: 120
+  - mTileType: 11
+    mTimeEffect: 120
   mSounds: []
