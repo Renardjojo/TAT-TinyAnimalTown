@@ -303,7 +303,7 @@ public class LevelManager : MonoBehaviour
     {
         Vector2 direction = new Vector2(tileToAdd.transform.position.x - mCharacter.mPath.Last().transform.position.x,
             tileToAdd.transform.position.z - mCharacter.mPath.Last().transform.position.z);
-        return direction.sqrMagnitude <= Tile.TILE_SIZE;
+        return direction.sqrMagnitude <= Tile.TILE_SIZE * 1.5f;
     }
     
     public bool AddPath(Tile tileToAdd)
@@ -311,7 +311,7 @@ public class LevelManager : MonoBehaviour
         // Check if tile can be added (is Block ?)
         if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
             return false;
-        
+
         // Check if previous tile is same (remove of list)
         for (int i = 0; i < mCharacter.mPath.Count; i++)
         {
@@ -328,7 +328,7 @@ public class LevelManager : MonoBehaviour
                 return false;
             }
         }
-        
+
         // Check if tile is nearest than another
         if (!IsTileAdjacentToLastOnPath(tileToAdd))
             return false;
@@ -337,7 +337,7 @@ public class LevelManager : MonoBehaviour
         {
             // Play jump animation
             float deltaY = mCharacter.mPath.Last().transform.position.y - tileToAdd.transform.position.y;
-            if (deltaY != 0f)
+            if (deltaY > Tile.TILE_SIZE / 2f)
             {
                 if (!(mCharacter.mPath.Last().tileType == ETileType.STAIR || mCharacter.mPath.Last().tileType == ETileType.STEP_ROAD))
                     return false;
