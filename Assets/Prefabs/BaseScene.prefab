@@ -535,6 +535,8 @@ MonoBehaviour:
   mOutlineWidth: 10
   mOutlineFXOffset: 0.03
   mOutlineFXDuration: 1
+  mPrefabScorePopupText: {fileID: 389434622903284830, guid: bc3632574b00e544b88df564b39ba819,
+    type: 3}
   mFlag: {fileID: 4204294992087775212}
   mUIAnimator: {fileID: 1643141825}
   mUIChono: {fileID: 4104124042117965917}
