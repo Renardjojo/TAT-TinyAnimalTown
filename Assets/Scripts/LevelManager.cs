@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
         public AudioSource mMalusSound;
         public AudioSource mLastTileSound;
         public AudioSource[] mTouchTileDefaultSound;
+        public AudioSource mLastTileSelectSound;
 
     // Start is called before the first frame update
     void Start()
@@ -347,6 +348,7 @@ public class LevelManager : MonoBehaviour
         //Is path done ?
         if (tileToAdd == mToTile)
         {
+            mLastTileSelectSound?.Play();
             SetGameState(EGameState.MOVE);
         }
 
