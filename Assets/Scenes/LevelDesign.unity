@@ -7082,14 +7082,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5003761, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b62884747cae9e942b74b3e3aadc5d5e,
+        type: 3}
     - target: {fileID: 84981731, guid: e9451a6eb756178499ec9d121a582777, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a0cec58fc32f482418596ffdf7c0d693, type: 2}
+    - target: {fileID: 165394675, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 310057003, guid: e9451a6eb756178499ec9d121a582777, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 355217313, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59cbad306cdd56f4182fc516e9747d20,
+        type: 3}
     - target: {fileID: 645535669, guid: e9451a6eb756178499ec9d121a582777, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.83400005
@@ -7126,6 +7140,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a0cec58fc32f482418596ffdf7c0d693, type: 2}
+    - target: {fileID: 1327995963, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469219867, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5895d7f7c915f544291d13b4410531d7,
+        type: 3}
     - target: {fileID: 1672763900, guid: e9451a6eb756178499ec9d121a582777, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
