@@ -202,19 +202,11 @@ public class LevelManager : MonoBehaviour
         // Play jump animation
         float deltaY = mCharacter.mPath.First().transform.position.y - mCharacter.transform.position.y + Tile.TILE_SIZE;
         if (deltaY < 0f)
-        {
             isGoDown = true;
-            mCharacter.mAnimator.SetTrigger("JumpLow");
-        }
         else if (deltaY > 0f)
-        {
             isGoUp = true;
-            mCharacter.mAnimator.SetTrigger("JumpHigh");
-        }
-        else
-        {
-            mCharacter.mAnimator.SetTrigger("JumpSame");
-        }
+        
+        mCharacter.mAnimator.SetTrigger("Jump");
         
         do
         {
