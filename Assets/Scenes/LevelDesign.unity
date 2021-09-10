@@ -7091,6 +7091,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a0cec58fc32f482418596ffdf7c0d693, type: 2}
+    - target: {fileID: 165394673, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 61.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 165394673, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 165394673, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 165394673, guid: e9451a6eb756178499ec9d121a582777, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -499
+      objectReference: {fileID: 0}
     - target: {fileID: 165394675, guid: e9451a6eb756178499ec9d121a582777, type: 3}
       propertyPath: m_Sprite
       value: 
