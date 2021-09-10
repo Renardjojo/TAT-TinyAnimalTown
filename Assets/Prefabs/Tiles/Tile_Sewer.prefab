@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce56d4b0395dc1048990bbcdb0cc98df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 5
+  tileType: 4
   mOutlineScipt: {fileID: 0}
   mSound: {fileID: 0}
 --- !u!65 &1180906452
