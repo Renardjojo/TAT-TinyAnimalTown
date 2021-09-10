@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         public Character mCharacter;
         
         public Tile mFromTile;
+        public GameObject mParticleFeedBackGO;
 
     [Tooltip("Destination")]
         public Tile mToTile;
