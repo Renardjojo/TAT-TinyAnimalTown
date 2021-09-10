@@ -165,7 +165,6 @@ public class LevelManager : MonoBehaviour
         float timeToAdd = 0f;
         if (isGoUp)
         {
-            Debug.Log("Hight");
             timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect;
         }
         else if (isGoDown)
