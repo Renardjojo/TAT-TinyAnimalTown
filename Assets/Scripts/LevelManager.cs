@@ -116,7 +116,7 @@ public class LevelManager : MonoBehaviour
             }
             else //Turn right
             {
-                mCharacter.transform.forward = new Vector3(-dirCharToGoal.x, mCharacter.transform.forward.y, -dirCharToGoal.y);
+                mCharacter.transform.forward = new Vector3(dirCharToGoal.x, mCharacter.transform.forward.y, dirCharToGoal.y);
             }
             return true;
         }
