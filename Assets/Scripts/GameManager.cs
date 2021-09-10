@@ -59,4 +59,9 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void QuittApplication()
+    {
+        Application.Quit();
+    }
 }
