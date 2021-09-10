@@ -8,6 +8,7 @@ public struct LevelData
     public Tile to;
     public Character character;
     public float bestTime;
+    public GameObject mParticleFeedBackGO;
 }
 public class GameManager : MonoBehaviour
 {
@@ -27,13 +28,19 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         mCurrentLevel = ++mCurrentLevel % mLevelList.Count;
-        
+
         if (mLevelManager.mCharacter)
+        {
             mLevelManager.mCharacter.gameObject.SetActive(false);
-        
+            mLevelManager.mParticleFeedBackGO.SetActive(false);
+        }
+
         mLevelManager.mCharacter = mLevelList[mCurrentLevel].character;
+        mLevelManager.mParticleFeedBackGO = mLevelList[mCurrentLevel].mParticleFeedBackGO;
+            
         mLevelManager.mCharacter.gameObject.SetActive(true);
-        
+        mLevelManager.mParticleFeedBackGO.SetActive(true);
+
         mLevelManager.mFromTile = mLevelList[mCurrentLevel].from;
         mLevelManager.mToTile = mLevelList[mCurrentLevel].to;
         mLevelManager.mBestTime = mLevelList[mCurrentLevel].bestTime;
@@ -51,5 +58,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void QuittApplication()
+    {
+        Application.Quit();
     }
 }

@@ -39,7 +39,7 @@ MonoBehaviour:
   - mTileType: 10
     mTimeEffect: 240
   - mTileType: 11
-    mTimeEffect: 0
+    mTimeEffect: 120
   mSounds:
   - {fileID: 8300000, guid: 08cca0466ce1ee7468d71662441141cb, type: 3}
   - {fileID: 8300000, guid: 53b425d7ea6532d4d8dd37937a4f24c8, type: 3}

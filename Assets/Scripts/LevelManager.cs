@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         public Character mCharacter;
         
         public Tile mFromTile;
+        public GameObject mParticleFeedBackGO;
 
     [Tooltip("Destination")]
         public Tile mToTile;
@@ -164,7 +165,6 @@ public class LevelManager : MonoBehaviour
         float timeToAdd = 0f;
         if (isGoUp)
         {
-            Debug.Log("Hight");
             timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect;
         }
         else if (isGoDown)
