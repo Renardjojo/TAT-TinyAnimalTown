@@ -5559,7 +5559,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1268722671
@@ -6640,17 +6640,17 @@ PrefabInstance:
     - target: {fileID: 865338612314966614, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.055
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 865338612314966614, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 865338612314966614, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 865338612314966614, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
@@ -6697,6 +6697,21 @@ PrefabInstance:
       propertyPath: mParticleJumpEnd
       value: 
       objectReference: {fileID: 86193592}
+    - target: {fileID: 3143116882144526446, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143116882144526446, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143116882144526446, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.998
+      objectReference: {fileID: 0}
     - target: {fileID: 5333557634629283694, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: m_audioClip

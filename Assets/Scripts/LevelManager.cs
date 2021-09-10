@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -28,7 +27,7 @@ public class LevelManager : MonoBehaviour
         public Character mCharacter;
         
         public Tile mFromTile;
-    
+
     [Tooltip("Destination")]
         public Tile mToTile;
     
@@ -49,6 +48,7 @@ public class LevelManager : MonoBehaviour
         [Range(0f, 10f)]
         public float mOutlineFXDuration = 1f;
 
+        public GameObject mPrefabScorePopupText;
         public GameObject mFlag;
         
     [Header("UI")]
@@ -138,7 +138,15 @@ public class LevelManager : MonoBehaviour
     {
         if (timeToAdd == 0f)
             return;
-
+        
+        TextMeshPro text = Instantiate(mPrefabScorePopupText, mCharacter.transform.position + Vector3.up * Tile.TILE_SIZE, Camera.main.transform.rotation).GetComponentInChildren<TextMeshPro>();
+        
+        var ts = TimeSpan.FromSeconds(timeToAdd);
+        text.text = string.Format("+{0:00}m{1:00}", ts.TotalMinutes, ts.Seconds);
+        const float timeMax = 480f;
+        const float timeMin = 30f;
+        text.color = Color.Lerp(Color.green, Color.red, timeToAdd / (timeMax - timeMin));
+        
         CheckAndPlayEffectSound(timeToAdd);
         mCurrentTime += timeToAdd;
         mUIChono.SetValueAsTime(mCurrentTime);
@@ -153,28 +161,30 @@ public class LevelManager : MonoBehaviour
     void ApplyTileEffect(bool isTurning, bool isGoDown, bool isGoUp)
     {
         //Apply altitude effect
+        float timeToAdd = 0f;
         if (isGoUp)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect);
+            Debug.Log("Hight");
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.UP].mTimeEffect;
         }
         else if (isGoDown)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.DOWN].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.DOWN].mTimeEffect;
         }
         
         //Apply turn effect
         if (isTurning)
         {
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.TURN].mTimeEffect;
         }
         else
         {
-            Debug.Log("Ligne");
-            AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect);
+            timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int)ETileType.LINE].mTimeEffect;
         }
         
         // Apply tile effect
-        AddTimeToCurrent(mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect);
+        timeToAdd += mCharacter.mUserData.mTilesEffectOnCharacter[(int) mCharacter.mPath.First().tileType].mTimeEffect;
+        AddTimeToCurrent(timeToAdd);
     }
 
     protected IEnumerator MoveCoroutine()
@@ -232,7 +242,7 @@ public class LevelManager : MonoBehaviour
     void UpdateSelectionPathControl()
     {
 #if UNITY_EDITOR
-        bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || Input.touchCount == 1;     
+        bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);     
 #elif UNITY_STANDALONE
         bool isClic = Input.GetMouseButton(0);     
 #else
@@ -308,9 +318,9 @@ public class LevelManager : MonoBehaviour
     }
     
     public bool AddPath(Tile tileToAdd)
-    {
+    {        
         // Check if tile can be added (is Block ?)
-        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f)
+        if (mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTimeEffect == 0f && mCharacter.mUserData.mTilesEffectOnCharacter[(int) tileToAdd.tileType].mTileType != ETileType.STEP_ROAD)
             return false;
 
         // Check if previous tile is same (remove of list)
@@ -333,7 +343,7 @@ public class LevelManager : MonoBehaviour
         // Check if tile is nearest than another
         if (!IsTileAdjacentToLastOnPath(tileToAdd))
             return false;
-
+        
         //Check if tile is up or down and if previous is step
         {
             // Play jump animation

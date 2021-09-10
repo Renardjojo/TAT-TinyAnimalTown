@@ -35,9 +35,9 @@ MonoBehaviour:
   - mTileType: 8
     mTimeEffect: 240
   - mTileType: 9
-    mTimeEffect: 120
+    mTimeEffect: 0
   - mTileType: 10
-    mTimeEffect: 120
+    mTimeEffect: 0
   - mTileType: 11
     mTimeEffect: 0
   mSounds:
