@@ -200,7 +200,11 @@ public class LevelManager : MonoBehaviour
             isGoUp = true;
         
         mCharacter.mAnimator.SetTrigger("Jump");
-        
+
+        if (mCharacter.mPath.First().tileType == ETileType.STEP_ROAD ||
+            mCharacter.mPath.First().tileType == ETileType.STAIR)
+            toPos += Vector3.up * Tile.TILE_SIZE / 2f;
+            
         do
         {
             t += Time.deltaTime;
@@ -229,9 +233,9 @@ public class LevelManager : MonoBehaviour
 #if UNITY_EDITOR
         bool isClic = (!mUseMobileInput && Input.GetMouseButtonDown(0)) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);     
 #elif UNITY_STANDALONE
-        bool isClic = Input.GetMouseButton(0);     
+        bool isClic = Input.GetMouseButtonDown(0);     
 #else
-        bool isClic = Input.touchCount == 1;
+        bool isClic = (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
 #endif        
 
         if (isClic)
@@ -241,8 +245,10 @@ public class LevelManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (!AddPath(hit.transform.GetComponent<Tile>()))
+                {
                     mTileRefusedSound?.Play();
-                
+                }
+
                 Debug.DrawLine(mCam.transform.position, hit.point, Color.red, 1f);
             }
         }
@@ -352,8 +358,15 @@ public class LevelManager : MonoBehaviour
             SetGameState(EGameState.MOVE);
         }
 
-
-        tileToAdd.mSound.Play();
+        if (tileToAdd.mSound)
+        {
+            tileToAdd.mSound.Play();
+        }
+        else
+        {
+            mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
+        }
+            
         mCharacter.AddTile(tileToAdd);
         return true;
     }
