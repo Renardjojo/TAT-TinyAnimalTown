@@ -106,18 +106,11 @@ public class LevelManager : MonoBehaviour
         Vector2 dirCharToGoal = (toPos - fromPos).normalized;
         float dot = Vector2.Dot(Convert3DPosTo2DPosXZ(mCharacter.transform.forward), dirCharToGoal);
 
+        mCharacter.transform.forward = new Vector3(dirCharToGoal.x, mCharacter.transform.forward.y, dirCharToGoal.y);
+        
         //Need to turn
         if (Mathf.Abs(dot) < 0.5)
         {
-            //Turn left
-            if (dot > 0f)
-            {
-                mCharacter.transform.forward = new Vector3(dirCharToGoal.x, mCharacter.transform.forward.y, dirCharToGoal.y);
-            }
-            else //Turn right
-            {
-                mCharacter.transform.forward = new Vector3(dirCharToGoal.x, mCharacter.transform.forward.y, dirCharToGoal.y);
-            }
             return true;
         }
         return false;
@@ -359,17 +352,9 @@ public class LevelManager : MonoBehaviour
             SetGameState(EGameState.MOVE);
         }
 
-        if (tileToAdd.mSound)
-        {
-            tileToAdd.mSound.Play();
-        }
-        else
-        {
-            mTouchTileDefaultSound[Random.Range(0, mTouchTileDefaultSound.Length)]?.Play();
-        }
-            
+
+        tileToAdd.mSound.Play();
         mCharacter.AddTile(tileToAdd);
-        
         return true;
     }
 

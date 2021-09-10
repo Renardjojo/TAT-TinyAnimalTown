@@ -7258,6 +7258,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseScene
       objectReference: {fileID: 0}
+    - target: {fileID: 3120445508150945609, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120445508150945609, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120445508150945609, guid: e9451a6eb756178499ec9d121a582777,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 6584547257282379189, guid: e9451a6eb756178499ec9d121a582777,
         type: 3}
       propertyPath: mLevelList.Array.data[0].to
